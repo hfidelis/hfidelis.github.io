@@ -1,4 +1,4 @@
-name: auto-deploy gh-pages
+name: auto-deploy hfidelis gh-pages
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Deploy 🚀
+      - name: Deploy Github Pages 🚀
         if: ${{ github.event_name != 'pull_request' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
