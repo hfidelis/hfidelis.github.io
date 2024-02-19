@@ -1,27 +1,26 @@
 import {
   createI18n,
-  type VueMessageType,
-  type LocaleMessages
-} from 'vue-i18n';
+  type I18nOptions,
+} from 'vue-i18n'
 
-import ptBrLocale from '@/locales/pt-BR.json';
-import enUsLocale from '@/locales/en-US.json';
+import LocaleDict from '@/types/i18n/LocaleDict'
 
-type LocaleDict = {
-  [key: string]: LocaleMessages<VueMessageType>
-};
+import ptBR from '@/locales/pt-BR.json'
+import enUS from '@/locales/en-US.json'
 
 const messages: LocaleDict = {
-  'pt-BR': ptBrLocale,
-  'en-US': enUsLocale,
-};
+  'pt-BR': ptBR,
+  'en-US': enUS,
+}
 
-const i18n = createI18n({
-  fallbackLocale: 'pt-br',
+const options: I18nOptions = {
+  fallbackLocale: 'pt-BR',
   globalInjection: true,
-  locale: 'pt-br',
+  locale: 'pt-BR',
   legacy: false,
   messages,
-});
+}
 
-export default i18n;
+const i18n = createI18n(options)
+
+export default i18n
