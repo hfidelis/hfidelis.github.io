@@ -3,6 +3,7 @@ import {
   type I18nOptions,
 } from 'vue-i18n'
 
+import Locale from '@/types/i18n/Locale'
 import LocaleDict from '@/types/i18n/LocaleDict'
 
 import ptBR from '@/locales/pt-BR.json'
@@ -13,10 +14,12 @@ const messages: LocaleDict = {
   'en-US': enUS,
 }
 
+const defaultLocale: Locale = 'pt-BR'
+
 const options: I18nOptions = {
-  fallbackLocale: 'pt-BR',
+  fallbackLocale: defaultLocale,
   globalInjection: true,
-  locale: 'pt-BR',
+  locale: defaultLocale,
   legacy: false,
   messages,
 }
