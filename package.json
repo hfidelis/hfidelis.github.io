@@ -17,6 +17,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47",
     "@vueuse/core": "^10.8.0",
     "sass": "^1.71.0",
     "vue": "^3.4.15",
