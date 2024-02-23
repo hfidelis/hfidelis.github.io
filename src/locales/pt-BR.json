@@ -1,3 +1,8 @@
 {
-    "test": "Teste em Português"
+    "test": "Teste em Português",
+    "components": {
+        "localeSelect": {
+            "selectedLabel": "Selecionado"
+        }
+    }
 }

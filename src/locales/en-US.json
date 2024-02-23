@@ -1,3 +1,8 @@
 {
-    "test": "English Test"
+    "test": "English Test",
+    "components": {
+        "localeSelect": {
+            "selectedLabel": "Selected"
+        }
+    }
 }
