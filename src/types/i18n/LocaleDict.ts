@@ -6,7 +6,7 @@ import {
 import Locale from '@/types/i18n/Locale'
 
 type LocaleDict = {
-  [key in Locale]: LocaleMessages<VueMessageType>
+  [key in Locale]: LocaleMessages<VueMessageType | any>
 }
 
 export default LocaleDict
