@@ -1,0 +1,10 @@
+@import './mixins.scss';
+
+@font-face {
+    font-family: 'Monaspace Krypton';
+    src: url('~@/assets/fonts/Monospace-Krypton.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Monaspace Krypton', monospace;
+}
