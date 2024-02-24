@@ -14,7 +14,6 @@ import {
 
 import { useDark } from '@vueuse/core'
 
-import SvgIcon from '@jamescoyle/vue-icon'
 import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle.vue'
 
