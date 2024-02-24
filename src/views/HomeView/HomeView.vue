@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import SvgIcon from '@jamescoyle/vue-icon'
-
 import {
   mdiWrenchClock,
 } from '@mdi/js'
@@ -34,16 +32,13 @@ main {
   > h1 {
     font-size: $text-xxl;
     font-weight: 700;
-    // background-image: linear-gradient(90deg,rgb(213, 174, 19),rgb(169, 116, 19));
-    // background-clip: text;
-    // -webkit-text-fill-color: transparent;
-    // -webkit-background-clip: text;
   }
 
   > p {
     font-size: $text-md;
     font-weight: 500;
     text-wrap: pretty;
+    max-width: 30rem;
   }
 }
 </style>
