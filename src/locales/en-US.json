@@ -1,0 +1,14 @@
+{
+    "test": "English Test",
+    "components": {
+        "localeSelect": {
+            "selectedLabel": "Selected"
+        }
+    },
+    "views": {
+        "home": {
+            "title": "Under construction...",
+            "subtitle": "Soon you will be able to find here some info about me and possibly some posts."
+        }
+    }
+}
