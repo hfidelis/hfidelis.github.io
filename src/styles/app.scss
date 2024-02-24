@@ -1,4 +1,8 @@
 @import './mixins.scss';
+@import './variables.scss';
+
+@import './themes/dark.scss';
+@import './themes/light.scss';
 
 @font-face {
     font-family: 'Monaspace Krypton';
@@ -7,4 +11,10 @@
 
 * {
     font-family: 'Monaspace Krypton', monospace;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body {
+    min-height: 100dvh;
 }
