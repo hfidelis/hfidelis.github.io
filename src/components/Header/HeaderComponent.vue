@@ -188,7 +188,10 @@ onBeforeUnmount(() => {
 
 .logo__prefix,
 .logo__sufix {
-  color: $dark-green;
+  background-image: linear-gradient(90deg,$green,$dark-green);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .app__header__logo {
@@ -224,7 +227,7 @@ onBeforeUnmount(() => {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: $green;
+    background-color: $dark-green;
     animation: fadeInOut 1.2s infinite ease;
   }
 }
