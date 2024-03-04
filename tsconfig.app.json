@@ -8,12 +8,13 @@
     "verbatimModuleSyntax": false,
     "noImplicitAny": false,
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
     "types": [
       "node"
-    ],
+    ]
   }
 }
