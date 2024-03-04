@@ -1,0 +1,6 @@
+@import './variables.scss';
+
+.header__mobile__item {
+    height: $header-item-height !important;
+    width: $header-item-width !important;
+}
