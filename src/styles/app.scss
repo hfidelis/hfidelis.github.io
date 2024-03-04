@@ -1,12 +1,14 @@
 @import './mixins.scss';
 @import './variables.scss';
+@import './classes.scss';
 
 @import './themes/dark.scss';
 @import './themes/light.scss';
 
 @font-face {
-    font-family: 'Monaspace Krypton';
-    src: url('~@/assets/fonts/Monospace-Krypton.ttf') format('truetype');
+    font-family: 'Monaspace Krypton', monospace;
+    src: url('../assets/fonts/MonaspaceKrypton.ttf') format('truetype');
+    font-display: optional;
 }
 
 * {

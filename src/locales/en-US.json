@@ -2,7 +2,12 @@
     "test": "English Test",
     "components": {
         "localeSelect": {
-            "selectedLabel": "Selected"
+            "selectedLabel": "Selected",
+            "ariaLabel": "Choose app language"
+        },
+        "themeToggle": {
+            "ariaLabel": "Toggle theme",
+            "label": "Theme"
         }
     },
     "views": {
