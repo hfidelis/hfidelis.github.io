@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
 
+import isMobile from '@/helpers/isMobile.ts'
+
 import {
   mdiWeatherSunny,
   mdiWeatherNight,
@@ -18,15 +20,25 @@ const toggleDark = useToggle(isDark)
 
 <template>
   <button
+    :aria-label="$t('components.themeToggle.ariaLabel')"
     class="theme__toggle__btn"
-    :class="isDark ? 'dark__toggle' : 'light__toggle'"
+    :class="[
+      isDark ? 'dark__toggle' : 'light__toggle',
+      isMobile ? 'header__mobile__item' : '',
+    ]"
     @click="toggleDark()"
   >
+    <span
+      v-if="isMobile"
+    >
+      {{ $t('components.themeToggle.label') }}
+    </span>
     <Transition name="toggle__transition">
       <template
         v-if="isDark"
       >
         <SvgIcon
+          :aria-hidden="true"
           :path="mdiWeatherSunny"
           type="mdi"
           size="30"
@@ -36,6 +48,7 @@ const toggleDark = useToggle(isDark)
         v-else
       >
         <SvgIcon
+          :aria-hidden="true"
           :path="mdiWeatherNight"
           type="mdi"
           size="30"
@@ -49,10 +62,18 @@ const toggleDark = useToggle(isDark)
 @import '@/styles/app.scss';
 
 .theme__toggle__btn {
+  @include flex(row, center, center, 0.6rem);
   border: none;
   border-radius: $radius-md;
   padding: 0.2rem 0.6rem;
   cursor: pointer;
+  overflow: hidden;
+  height: $header-item-height;
+
+  > span {
+    font-size: $text-sm;
+    font-weight: 600;
+  }
 }
 
 .dark__toggle {
@@ -60,7 +81,7 @@ const toggleDark = useToggle(isDark)
   border: $border-sm solid $dark-border;
   box-shadow: $dark-mode-shadow;
 
-  > svg {
+  > svg, span {
     color: $primary-light;
   }
 }
@@ -70,7 +91,7 @@ const toggleDark = useToggle(isDark)
   border: $border-sm solid $light-border;
   box-shadow: $light-mode-shadow;
 
-  > svg {
+  > svg, span {
     color: $primary-dark;
   }
 }

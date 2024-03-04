@@ -55,6 +55,8 @@ export default {
     :class="isDark ? 'dark__select' : 'light__select'"
   >
     <VueMultiselect
+      :aria-hidden="true"
+      :aria-label="$t('components.localeSelect.ariaLabel')"
       :options="locales"
       :selectLabel="''"
       :deselectLabel="''"
@@ -103,6 +105,7 @@ export default {
     background-color: transparent;
     color: $primary-light;
     border: none;
+    cursor: pointer;
 
     .multiselect__tags,
     .multiselect__single,

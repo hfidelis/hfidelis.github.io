@@ -2,7 +2,12 @@
     "test": "Teste em Português",
     "components": {
         "localeSelect": {
-            "selectedLabel": "Selecionado"
+            "selectedLabel": "Selecionado",
+            "ariaLabel": "Selecione o idioma do site"
+        },
+        "themeToggle": {
+            "ariaLabel": "Mudar o tema do site",
+            "label": "Tema"
         }
     },
     "views": {

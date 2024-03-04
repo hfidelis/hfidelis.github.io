@@ -2,9 +2,6 @@
 import {
   ref,
   watch,
-  computed,
-  onMounted,
-  onBeforeUnmount,
 } from 'vue'
 
 import {
@@ -14,6 +11,7 @@ import {
 
 import { useDark } from '@vueuse/core'
 
+import isMobile from '@/helpers/isMobile.ts'
 import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle.vue'
 
@@ -24,32 +22,14 @@ const toggleOpen = () => {
   isOpen.value = !isOpen.value
 }
 
-const windowWidth = ref(window.innerWidth)
-
 watch(
-  () => windowWidth.value,
-  () => {
-    if (isMobile.value) {
+  () => isMobile.value,
+  (val) => {
+    if (val) {
       isOpen.value = false
     }
   }
 )
-
-const isMobile = computed(() => {
-  return windowWidth.value <= 1024
-})
-
-const updateWindowWidth = () => {
-  windowWidth.value = window.innerWidth
-}
-
-onMounted(() => {
-  window.addEventListener('resize', updateWindowWidth)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateWindowWidth)
-})
 </script>
 
 <template>
@@ -72,11 +52,6 @@ onBeforeUnmount(() => {
         hfidelis
       </a>
       <span
-        class="logo__sufix"
-      >
-        $
-      </span>
-      <span
         class="logo__thick"
       >
         <span
@@ -90,36 +65,32 @@ onBeforeUnmount(() => {
       <button
         class="menu__button"
         v-if="isMobile"
-        :style="{ 'opacity': isOpen ? 0 : 1 }"
       >
         <SvgIcon
-          :path="mdiMenuOpen"
+          :path="isOpen ? mdiWindowClose : mdiMenuOpen"
           type="mdi"
           size="26"
           @click="toggleOpen()"
         />
       </button>
       <div
-        :class="isMobile ? 'actions__mobile' : 'actions__default'"
-        :style="{ 
-          'display': isOpen ? 'flex' :
-                     isMobile ? 'none' : 'flex'
-        }"
+        v-if="!isMobile"
+        class='actions__default'
       >
-        <button
-          class="menu__button"
-          v-show="isOpen && isMobile"
-        >
-          <SvgIcon
-            :path="mdiWindowClose"
-            type="mdi"
-            size="26"
-            @click="toggleOpen()"
-          />
-        </button>
         <LocaleSelect />
         <ThemeToggle />
       </div>
+      <Transition
+        name="sidebar"
+      >
+        <div
+          v-if="isMobile && isOpen"
+          class='actions__mobile sidebar'
+        >
+          <LocaleSelect />
+          <ThemeToggle />
+        </div>
+      </Transition>
     </section>
   </header>
 </template>
@@ -130,6 +101,7 @@ onBeforeUnmount(() => {
 .app__header {
   @include flex(row, center, space-between);
   width: 100dvw;
+  height: $header-height;
   padding: 1.2rem 25dvw;
 
   @media screen {
@@ -158,11 +130,13 @@ onBeforeUnmount(() => {
     -webkit-background-clip: text;    
   }
 
-  .menu__button {
-    color: $white;
-    background-color: $primary-dark;
-    border: $border-sm solid $dark-border;
-    box-shadow: $dark-mode-shadow;
+  .app__header__actions {
+    > .menu__button {
+      color: $white;
+      background-color: $primary-dark;
+      border: $border-sm solid $dark-border;
+      box-shadow: $dark-mode-shadow;
+    }
   }
 }
 
@@ -177,16 +151,17 @@ onBeforeUnmount(() => {
     -webkit-background-clip: text;
   }
 
-  .menu__button {
-    color: $black;
-    background-color: $primary-light;
-    border: $border-sm solid $light-border;
-    box-shadow: $light-mode-shadow;
+  .app__header__actions {
+   > .menu__button {
+      color: $black;
+      background-color: $primary-light;
+      border: $border-sm solid $light-border;
+      box-shadow: $light-mode-shadow;
+    } 
   }
 }
 
-.logo__prefix,
-.logo__sufix {
+.logo__prefix {
   background-image: linear-gradient(90deg,$green,$dark-green);
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -243,7 +218,7 @@ onBeforeUnmount(() => {
 }
 
 .actions__mobile {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
@@ -254,7 +229,7 @@ onBeforeUnmount(() => {
   width: 100dvw;
 
   position: absolute;
-  top: 0;
+  top: $header-height;
   left: 0;
   z-index: 2;
 
@@ -275,13 +250,23 @@ onBeforeUnmount(() => {
 }
 
 @keyframes enter {
-  0% {
-    opacity: 0;
+  from {
     transform: translateX(100%);
   }
-  100% {
-    opacity: 1;
+  to {
     transform: translateX(0);
   }
+}
+
+.sidebar-leave-active {
+  transition: transform 0.5s;
+}
+.sidebar-leave-to {
+  transform: translateX(100%);
+}
+
+
+.sidebar-leave-active {
+  transition: transform 0.5s, right 0.5s;
 }
 </style>
