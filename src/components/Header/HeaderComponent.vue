@@ -11,7 +11,7 @@ import {
 
 import { useDark } from '@vueuse/core'
 
-import isMobile from '@/helpers/isMobile.ts'
+import isMobile from '@/helpers/isMobile'
 import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle.vue'
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
 
-import isMobile from '@/helpers/isMobile.ts'
+import isMobile from '@/helpers/isMobile'
 
 import {
   mdiWeatherSunny,
