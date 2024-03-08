@@ -55,7 +55,6 @@ export default {
     :class="isDark ? 'dark__select' : 'light__select'"
   >
     <VueMultiselect
-      :aria-hidden="true"
       :aria-label="$t('components.localeSelect.ariaLabel')"
       :options="locales"
       :selectLabel="''"

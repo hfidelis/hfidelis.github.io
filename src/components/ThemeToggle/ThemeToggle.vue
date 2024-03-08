@@ -38,7 +38,6 @@ const toggleDark = useToggle(isDark)
         v-if="isDark"
       >
         <SvgIcon
-          :aria-hidden="true"
           :path="mdiWeatherSunny"
           type="mdi"
           size="30"
@@ -48,7 +47,6 @@ const toggleDark = useToggle(isDark)
         v-else
       >
         <SvgIcon
-          :aria-hidden="true"
           :path="mdiWeatherNight"
           type="mdi"
           size="30"
