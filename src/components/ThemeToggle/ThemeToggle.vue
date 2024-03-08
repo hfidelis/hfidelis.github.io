@@ -33,26 +33,11 @@ const toggleDark = useToggle(isDark)
     >
       {{ $t('components.themeToggle.label') }}
     </span>
-    <Transition name="toggle__transition">
-      <template
-        v-if="isDark"
-      >
-        <SvgIcon
-          :path="mdiWeatherSunny"
-          type="mdi"
-          size="30"
-        />
-      </template>
-      <template
-        v-else
-      >
-        <SvgIcon
-          :path="mdiWeatherNight"
-          type="mdi"
-          size="30"
-        />
-      </template>
-    </Transition>
+    <SvgIcon
+      :path="isDark ? mdiWeatherSunny : mdiWeatherNight"
+      type="mdi"
+      size="30"
+    />
   </button>
 </template>
 
@@ -92,15 +77,5 @@ const toggleDark = useToggle(isDark)
   > svg, span {
     color: $primary-dark;
   }
-}
-
-.toggle__transition-enter-active {
-  transition: all 0.5s ease-out;
-}
-
-.toggle__transition-enter-from,
-.toggle__transition-leave-to {
-  transform: translateX(1.2rem);
-  opacity: 0;
 }
 </style>
