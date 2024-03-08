@@ -163,7 +163,7 @@ watch(
 }
 
 .logo__prefix {
-  background-image: linear-gradient(90deg,$green,$dark-green);
+  background-image: linear-gradient(90deg,$cyan,$dark-cyan);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -202,7 +202,7 @@ watch(
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: $dark-green;
+    background-color: $dark-cyan;
     animation: fadeInOut 1.2s infinite ease;
   }
 }
