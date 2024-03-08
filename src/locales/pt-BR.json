@@ -14,6 +14,11 @@
         "home": {
             "title": "Em construção...",
             "subtitle": "Em breve você poderá encontrar por aqui informações sobre mim e possivelmente algumas postagens."
+        },
+        "notFound": {
+            "title": "Ops! Parece que esta página não existe...",
+            "subtitle": "Talvez você tenha digitado o endereço errado ou a página foi removida.",
+            "back": "Voltar para a página inicial"
         }
     }
 }
