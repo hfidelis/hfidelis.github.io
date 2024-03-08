@@ -11,6 +11,8 @@ import {
 
 import { useDark } from '@vueuse/core'
 
+import { RouterLink } from 'vue-router'
+
 import isMobile from '@/helpers/isMobile'
 import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'
 import ThemeToggle from '@/components/ThemeToggle/ThemeToggle.vue'
@@ -45,12 +47,11 @@ watch(
       >
         ~/
       </span>
-      <a
-        href="https://github.com/hfidelis"
-        target="_blank"
+      <RouterLink
+        to="/"
       >
         hfidelis
-      </a>
+      </RouterLink>
       <span
         class="logo__thick"
       >
