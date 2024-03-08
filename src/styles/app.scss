@@ -8,7 +8,7 @@
 @font-face {
     font-family: 'Monaspace Krypton', monospace;
     src: url('../assets/fonts/MonaspaceKrypton.ttf') format('truetype');
-    font-display: optional;
+    font-display: block;
 }
 
 * {
@@ -19,4 +19,8 @@
 
 html, body {
     min-height: 100dvh;
+}
+
+body {
+    overflow-x: hidden;
 }

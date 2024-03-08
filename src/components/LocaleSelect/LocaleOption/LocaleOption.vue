@@ -13,9 +13,11 @@ const props = defineProps({
 
 <template>
   <div class="locale__option">
-    <span class="locale__flag">
-      {{ props.option.flag }}
-    </span>
+    <img
+      :src="props.option.flag"
+      :alt="`${props.option.value} flag image`"
+      class="locale__flag"
+    />
     <span class="locale__value">
       {{ props.option.value }}
     </span>
@@ -27,5 +29,10 @@ const props = defineProps({
 .locale__option {
   @include flex(row, center, start, 0.4rem, nowrap);
   font-weight: 600;
+
+  > .locale__flag {
+    width: 1rem;
+    height: 0.8rem;
+  }
 }
 </style>

@@ -14,6 +14,11 @@
         "home": {
             "title": "Under construction...",
             "subtitle": "Soon you will be able to find here some info about me and possibly some posts."
+        },
+        "notFound": {
+            "title": "Oops! It looks like this page doesn't exists...",
+            "subtitle": "Maybe you typed the wrong address or the page has been removed.",
+            "back": "Back to home page"
         }
     }
 }

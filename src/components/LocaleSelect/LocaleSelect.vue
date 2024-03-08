@@ -7,6 +7,9 @@ import Locale from '@/types/i18n/Locale'
 import LocaleOption from '@/components/LocaleSelect/LocaleOption/LocaleOption.vue'
 import LocaleValueType from '@/types/components/LocaleSelect/LocaleValueType'
 
+import ptBRFlag from '@/assets/flags/pt-BR.png'
+import enUSFlag from '@/assets/flags/en-US.png'
+
 export default {
   components: {
     VueMultiselect,
@@ -15,14 +18,14 @@ export default {
   data() {
     const isDark = useDark()
 
-    const selectedLocale: LocaleValueType = {
-      value: this.$i18n.locale as Locale,
-      flag: '🇧🇷',
+    const countryFlags: { [key in Locale]: string } = {
+      'pt-BR': ptBRFlag,
+      'en-US': enUSFlag,
     } as const;
 
-    const countryFlags: { [key in Locale]: string } = {
-      'pt-BR': '🇧🇷',
-      'en-US': '🇺🇸',
+    const selectedLocale: LocaleValueType = {
+      value: this.$i18n.locale as Locale,
+      flag: countryFlags[this.$i18n.locale as Locale],
     } as const;
 
     const locales = this.$i18n.availableLocales.map((k): LocaleValueType => {      
@@ -55,7 +58,6 @@ export default {
     :class="isDark ? 'dark__select' : 'light__select'"
   >
     <VueMultiselect
-      :aria-hidden="true"
       :aria-label="$t('components.localeSelect.ariaLabel')"
       :options="locales"
       :selectLabel="''"
