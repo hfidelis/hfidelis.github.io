@@ -7,7 +7,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <main>
     <section
-      class="not__found__wrapper"
+      class="not__found__wrapper view__container"
     >
       <img
         :src="notFound"
@@ -46,10 +46,8 @@ main {
   
   > .not__found__wrapper {
     @include flex(column, center, center);
-    min-height: 60dvh;
-    width: 100%;
 
-    padding: 3rem 2rem;
+    padding: 3rem 3rem;
 
     > .not__found__image {
       max-width: 350px;
@@ -92,17 +90,17 @@ main {
         border-radius: $radius-lg;
         padding: 0.8rem 1rem;
 
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
 
         margin-top: 1rem;
 
         @media screen and (max-width: 600px) {
           font-size: $text-sm;
-          padding: 0.6rem 0.4rem;
         }
 
         &:hover {
           background-color: $darker-cyan;
+          box-shadow: 0 0.1rem 1.0rem 0.1rem rgba(39, 222, 192, 0.2);
         }
       }
     }

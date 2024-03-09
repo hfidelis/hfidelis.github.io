@@ -1,5 +1,18 @@
 @import './variables.scss';
 
+.view__container {
+    min-height: 70dvh !important;
+    width: 100vw !important;
+}
+
+.h-100 {
+    height: 100% !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
 .header__mobile__item {
     height: $header-item-height !important;
     width: $header-item-width !important;
