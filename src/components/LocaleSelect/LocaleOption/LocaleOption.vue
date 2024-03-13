@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 import LocaleValueType from '@/types/components/LocaleSelect/LocaleValueType'
 
 const props = defineProps({
@@ -31,8 +29,8 @@ const props = defineProps({
   font-weight: 600;
 
   > .locale__flag {
-    width: 1rem;
-    height: 0.8rem;
+    width: 1.475rem;
+    height: 1rem;
   }
 }
 </style>
