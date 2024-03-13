@@ -86,7 +86,7 @@ watch(
       >
         <div
           v-if="isMobile && isOpen"
-          class='actions__mobile sidebar'
+          class='actions__mobile'
         >
           <LocaleSelect />
           <ThemeToggle />
@@ -236,6 +236,9 @@ watch(
 
   background-color: rgb(0 0 0 / 85%);
   animation: enter 0.5s ease;
+
+  backdrop-filter: blur(0.375rem) grayscale(0.75);
+  -webkit-backdrop-filter: blur(0.375rem) grayscale(0.75);
 }
 
 @keyframes fadeInOut {
