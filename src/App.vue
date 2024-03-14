@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { RouterView } from 'vue-router'
-import HeaderComponent from './components/Header/HeaderComponent.vue'
+import AppHeader from '@/components/Header/AppHeader.vue'
+import AppFooter from '@/components/Footer/AppFooter.vue'
 </script>
 
 <template>
   <div>
-    <HeaderComponent />
+    <AppHeader />
     <RouterView
       v-slot="{
         Component,
@@ -22,6 +23,7 @@ import HeaderComponent from './components/Header/HeaderComponent.vue'
         />
       </Transition>
     </RouterView>
+    <AppFooter />
   </div>
 </template>
 
@@ -36,3 +38,4 @@ import HeaderComponent from './components/Header/HeaderComponent.vue'
   opacity: 0;
 }
 </style>
+./components/Header/Header.vue

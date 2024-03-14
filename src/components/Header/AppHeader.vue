@@ -86,7 +86,7 @@ watch(
       >
         <div
           v-if="isMobile && isOpen"
-          class='actions__mobile sidebar'
+          class='actions__mobile'
         >
           <LocaleSelect />
           <ThemeToggle />
@@ -121,7 +121,7 @@ watch(
 }
 
 .dark__header {
-  border-bottom: 1px solid $dark-border;
+  border-bottom: 2px solid $dark-border;
   box-shadow: $dark-mode-shadow;
 
   .app__header__logo > a {
@@ -142,7 +142,7 @@ watch(
 }
 
 .light__header {
-  border-bottom: 1px solid $light-border;
+  border-bottom: 2px solid $light-border;
   box-shadow: $light-mode-shadow;
 
   .app__header__logo > a {
@@ -236,6 +236,9 @@ watch(
 
   background-color: rgb(0 0 0 / 85%);
   animation: enter 0.5s ease;
+
+  backdrop-filter: blur(0.375rem) grayscale(0.75);
+  -webkit-backdrop-filter: blur(0.375rem) grayscale(0.75);
 }
 
 @keyframes fadeInOut {

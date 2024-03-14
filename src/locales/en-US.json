@@ -8,6 +8,14 @@
         "themeToggle": {
             "ariaLabel": "Toggle theme",
             "label": "Theme"
+        },
+        "footer": {
+            "title": "Do you want to contact me?",
+            "madeWith": "Made with",
+            "by": "by Heitor Fidelis"
+        },
+        "footerLinkIcon": {
+            "ariaLabel": "Open contact link"
         }
     },
     "views": {
