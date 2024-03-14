@@ -1,23 +1,18 @@
 <script setup lang="ts">
-import {
-  mdiWrenchClock,
-} from '@mdi/js'
+import Layout from '@/layout/Layout.vue';
+import AvatarBox from '@/components/AvatarBox/AvatarBox.vue';
 </script>
 
 <template>
-  <main>
-    <SvgIcon
-      :path="mdiWrenchClock"
-      type="mdi"
-      size="70"
-    />
+  <Layout>
+    <AvatarBox />
     <h1>
       {{ $t('views.home.title') }}
     </h1>
     <p>
       {{ $t('views.home.subtitle') }}
     </p>
-  </main>
+  </Layout>
 </template>
 
 <style lang="scss" scoped>
