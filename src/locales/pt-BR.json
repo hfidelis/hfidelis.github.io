@@ -8,6 +8,14 @@
         "themeToggle": {
             "ariaLabel": "Mudar o tema do site",
             "label": "Tema"
+        },
+        "footer": {
+            "title": "Quer entrar em contato comigo?",
+            "madeWith": "Feito com",
+            "by": "por Heitor Fidelis"
+        },
+        "footerLinkIcon": {
+            "ariaLabel": "Abrir link de contato"
         }
     },
     "views": {
