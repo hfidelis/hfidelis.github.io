@@ -142,7 +142,7 @@ watch(
 }
 
 .light__header {
-  border-bottom: 1px solid $light-border;
+  border-bottom: 2px solid $light-border;
   box-shadow: $light-mode-shadow;
 
   .app__header__logo > a {
