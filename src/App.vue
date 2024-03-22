@@ -38,4 +38,3 @@ import AppFooter from '@/components/Footer/AppFooter.vue'
   opacity: 0;
 }
 </style>
-./components/Header/Header.vue
