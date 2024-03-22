@@ -55,8 +55,13 @@ watch(
       class="app__header__actions"
     >
       <button
-        class="menu__button"
         v-if="isMobile"
+        class="menu__button"
+        :aria-label="
+            isOpen ?
+            $t('components.header.menuButton.actions.close') :
+            $t('components.header.menuButton.actions.open')
+        "
       >
         <SvgIcon
           :path="isOpen ? mdiWindowClose : mdiMenuOpen"

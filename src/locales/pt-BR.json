@@ -16,6 +16,14 @@
         },
         "footerLinkIcon": {
             "ariaLabel": "Abrir link de contato"
+        },
+        "header": {
+            "menuButton": {
+                "actions": {
+                    "open": "Abrir menu",
+                    "close": "Fechar menu"
+                }
+            }
         }
     },
     "views": {
