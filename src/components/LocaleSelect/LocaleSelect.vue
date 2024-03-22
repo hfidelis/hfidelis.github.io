@@ -1,7 +1,6 @@
 <script lang="ts">
+import { ref } from 'vue'
 import { useDark } from '@vueuse/core'
-
-import VueMultiselect from 'vue-multiselect'
 
 import Locale from '@/types/i18n/Locale'
 import LocaleOption from '@/components/LocaleSelect/LocaleOption/LocaleOption.vue'
@@ -9,6 +8,8 @@ import LocaleValueType from '@/types/components/LocaleSelect/LocaleValueType'
 
 import ptBRFlag from '@/assets/flags/pt-BR.png'
 import enUSFlag from '@/assets/flags/en-US.png'
+
+import VueMultiselect from 'vue-multiselect'
 
 export default {
   components: {
@@ -23,10 +24,10 @@ export default {
       'en-US': enUSFlag,
     } as const;
 
-    const selectedLocale: LocaleValueType = {
+    const selectedLocale = ref<LocaleValueType>({
       value: this.$i18n.locale as Locale,
       flag: countryFlags[this.$i18n.locale as Locale],
-    } as const;
+    })
 
     const locales = this.$i18n.availableLocales.map((k): LocaleValueType => {      
       return {
@@ -35,19 +36,37 @@ export default {
       }
     })
 
+    const updateLocale = (locale: LocaleValueType): void => {
+      selectedLocale.value = locale
+      this.$i18n.locale = locale.value
+
+      localStorage.setItem('i18nLocale', locale.value)      
+    }
+
+    const checkStorageLocale = (): void => {
+      const storageLocale = localStorage.getItem('i18nLocale')
+
+      if (storageLocale) {
+        selectedLocale.value = {
+          value: storageLocale as Locale,
+          flag: countryFlags[storageLocale as Locale],
+        }
+        this.$i18n.locale = storageLocale as Locale
+      }
+    }
+
     return {
       isDark,
       locales,
+      updateLocale,
       countryFlags,
       selectedLocale,
+      checkStorageLocale,
     }
   },
-  methods: {
-    updateLocale(locale: LocaleValueType): void {
-      this.selectedLocale = locale
-      this.$i18n.locale = locale.value
-    }
-  },
+  created() {
+    this.checkStorageLocale()
+  }
 }
 
 </script>
