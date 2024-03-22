@@ -40,9 +40,9 @@ const footerLinks: Array<FooterLink> = [
       <section
         class="footer__title"
       >
-        <h3>
+        <h1>
           {{ $t('components.footer.title') }}
-        </h3>
+        </h1>
       </section>
       <section
         class="footer__links"
