@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import avatar from '@/assets/images/me.png'
-
 import { useDark } from '@vueuse/core'
+import avatar from '@/assets/images/me.png'
 
 const isDark = useDark()
 
@@ -32,6 +31,8 @@ const props = defineProps({
     <img
       :src="props.source"
       :alt="props.alt"
+      height="244"
+      width="270"
       class="avatar__content"
       v-tooltip="props.tooltip"
     >
@@ -43,8 +44,8 @@ const props = defineProps({
 
 .avatar__wrapper {
   @include flex(row, center, center);
-  height: 100%;
-  width: fit-content;
+  height: 15.505rem;
+  width: 16.875rem;
 
   overflow: hidden;
 
@@ -53,13 +54,22 @@ const props = defineProps({
 
   &:hover {
     .avatar__content {
-      animation: headBalance 0.675s ease;
+      transform: rotate(5deg) scale(1.1);
+    }
+  }
+
+  @media screen {
+    @media (max-width: 768px) {
+      height: 11.485rem;
+      width: 12.5rem;
     }
   }
 }
 
 .avatar__content {
-  max-width: 250px;
+  max-width: 100%;
+  max-height: 100%;
+  transition: all 0.45s ease;
 }
 
 .dark__avatar {
@@ -78,17 +88,5 @@ const props = defineProps({
                   0 0.188rem 4.5rem -0.188rem rgba(128, 127, 127, 0.35);
 
   background: radial-gradient(circle, $cyan, $darker-cyan 65%, $black 95%);
-}
-
-@keyframes headBalance {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(5deg) scale(1.075) rotateZ(-5deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
 }
 </style>

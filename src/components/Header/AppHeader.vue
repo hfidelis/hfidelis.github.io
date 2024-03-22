@@ -1,17 +1,8 @@
 <script setup lang="ts">
-import {
-  ref,
-  watch,
-} from 'vue'
-
-import {
-  mdiMenuOpen,
-  mdiWindowClose,
-} from '@mdi/js'
-
+import { ref, watch } from 'vue'
 import { useDark } from '@vueuse/core'
-
 import { RouterLink } from 'vue-router'
+import { mdiMenuOpen, mdiWindowClose } from '@mdi/js'
 
 import isMobile from '@/helpers/isMobile'
 import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'
@@ -64,8 +55,13 @@ watch(
       class="app__header__actions"
     >
       <button
-        class="menu__button"
         v-if="isMobile"
+        class="menu__button"
+        :aria-label="
+            isOpen ?
+            $t('components.header.menuButton.actions.close') :
+            $t('components.header.menuButton.actions.open')
+        "
       >
         <SvgIcon
           :path="isOpen ? mdiWindowClose : mdiMenuOpen"

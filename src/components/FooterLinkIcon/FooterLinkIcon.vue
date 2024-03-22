@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import FooterLink from '@/types/components/FooterLink/FooterLink'
 import { useDark } from '@vueuse/core'
+import FooterLink from '@/types/components/FooterLink/FooterLink'
 
 const props = defineProps<FooterLink>()
 const isDark = useDark()
@@ -15,7 +15,7 @@ const resolveLink = (link: string) => {
     role="link"
     class="footer__link__icon"
     :class="isDark ? 'dark__footer__link' : 'light__footer__link'"
-    :aria-label="$t('components.footerLinkIcon.ariaLabel')"    
+    :aria-label="`${$t('components.footerLinkIcon.ariaLabel')} ${props.label}`"
     @click="resolveLink(`${props.link}`)"
   >
     <component
@@ -26,7 +26,7 @@ const resolveLink = (link: string) => {
     <span
       class="footer__link__label"
     >
-      {{ label }}
+      {{ props.label }}
     </span>
   </button>
 </template>

@@ -25,12 +25,12 @@ main {
   text-align: center;
   
   > h1 {
-    font-size: $text-xxl;
+    font-size: $text-xl;
     font-weight: 700;
   }
 
   > p {
-    font-size: $text-md;
+    font-size: $text-sm;
     font-weight: 500;
     text-wrap: pretty;
     max-width: 30rem;
