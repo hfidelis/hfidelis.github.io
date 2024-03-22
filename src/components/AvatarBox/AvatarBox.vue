@@ -31,8 +31,8 @@ const props = defineProps({
     <img
       :src="props.source"
       :alt="props.alt"
-      height="250"
-      width="250"
+      height="244"
+      width="270"
       class="avatar__content"
       v-tooltip="props.tooltip"
     >
@@ -44,8 +44,8 @@ const props = defineProps({
 
 .avatar__wrapper {
   @include flex(row, center, center);
-  height: 15.625rem;
-  width: 15.625rem;
+  height: 15.505rem;
+  width: 16.875rem;
 
   overflow: hidden;
 
@@ -60,7 +60,7 @@ const props = defineProps({
 
   @media screen {
     @media (max-width: 768px) {
-      height: 12.5rem;
+      height: 11.485rem;
       width: 12.5rem;
     }
   }
