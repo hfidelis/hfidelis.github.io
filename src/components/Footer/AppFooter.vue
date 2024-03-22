@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import { useDark } from '@vueuse/core'
 
-import IconVue from '../Icons/IconVue.vue'
-import IconGmail from '../Icons/IconGmail.vue'
+import IconVue from '@/components/Icons/IconVue.vue'
+import IconGmail from '@/components/Icons/IconGmail.vue'
 import IconGithub from '@/components/Icons/IconGithub.vue'
-import IconLinkedin from '../Icons/IconLinkedin.vue'
-import FooterLinkIcon from '../FooterLinkIcon/FooterLinkIcon.vue'
-
+import IconLinkedin from '@/components/Icons/IconLinkedin.vue'
+import FooterLinkIcon from '@/components/FooterLinkIcon/FooterLinkIcon.vue'
 import FooterLink from '@/types/components/FooterLink/FooterLink'
 
 const isDark = useDark()

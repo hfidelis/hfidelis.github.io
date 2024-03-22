@@ -1,17 +1,8 @@
 <script setup lang="ts">
-import {
-  ref,
-  watch,
-} from 'vue'
-
-import {
-  mdiMenuOpen,
-  mdiWindowClose,
-} from '@mdi/js'
-
+import { ref, watch } from 'vue'
 import { useDark } from '@vueuse/core'
-
 import { RouterLink } from 'vue-router'
+import { mdiMenuOpen, mdiWindowClose } from '@mdi/js'
 
 import isMobile from '@/helpers/isMobile'
 import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'

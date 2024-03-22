@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import FooterLink from '@/types/components/FooterLink/FooterLink'
 import { useDark } from '@vueuse/core'
+import FooterLink from '@/types/components/FooterLink/FooterLink'
 
 const props = defineProps<FooterLink>()
 const isDark = useDark()

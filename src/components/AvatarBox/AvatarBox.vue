@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import avatar from '@/assets/images/me.png'
-
 import { useDark } from '@vueuse/core'
+import avatar from '@/assets/images/me.png'
 
 const isDark = useDark()
 
