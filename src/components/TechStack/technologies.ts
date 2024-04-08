@@ -29,7 +29,7 @@ const technologies: Array<Technology> = [
     { name: 'Angular', image: angular },
     { name: 'Sass/Scss', image: sass },
     { name: 'Bootstrap', image: bootstrap },
-    { name: 'BootrstrapVue', image: bootstrapvue },
+    { name: 'BootstrapVue', image: bootstrapvue },
     { name: 'Material UI', image: materialui },
     { name: 'Docker', image: docker },
     { name: 'Redis', image: redis },
