@@ -4,7 +4,7 @@ import { useDark } from '@vueuse/core'
 
 import Locale from '@/types/i18n/Locale'
 import LocaleOption from '@/components/LocaleSelect/LocaleOption/LocaleOption.vue'
-import LocaleValueType from '@/types/components/LocaleSelect/LocaleValueType'
+import LocaleValue from '@/types/components/LocaleSelect/LocaleValue.type'
 
 import ptBRFlag from '@/assets/flags/pt-BR.png'
 import enUSFlag from '@/assets/flags/en-US.png'
@@ -24,19 +24,19 @@ export default {
       'en-US': enUSFlag,
     } as const;
 
-    const selectedLocale = ref<LocaleValueType>({
+    const selectedLocale = ref<LocaleValue>({
       value: this.$i18n.locale as Locale,
       flag: countryFlags[this.$i18n.locale as Locale],
     })
 
-    const locales = this.$i18n.availableLocales.map((k): LocaleValueType => {      
+    const locales = this.$i18n.availableLocales.map((k): LocaleValue => {      
       return {
         value: k as Locale,
         flag: countryFlags[k as Locale],
       }
     })
 
-    const updateLocale = (locale: LocaleValueType): void => {
+    const updateLocale = (locale: LocaleValue): void => {
       selectedLocale.value = locale
       this.$i18n.locale = locale.value
 

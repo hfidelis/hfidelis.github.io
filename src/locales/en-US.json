@@ -1,13 +1,12 @@
-{
-    "test": "English Test",
+{    
     "components": {
-        "localeSelect": {
-            "selectedLabel": "Selected",
-            "ariaLabel": "Choose app language"
-        },
-        "themeToggle": {
-            "ariaLabel": "Toggle theme",
-            "label": "Theme"
+        "header": {
+            "menuButton": {
+                "actions": {
+                    "open": "Open menu",
+                    "close": "Close menu"
+                }
+            }
         },
         "footer": {
             "title": "Do you want to contact me?",
@@ -16,12 +15,25 @@
         },
         "footerLinkIcon": {
             "ariaLabel": "Open contact link"
+        },
+        "localeSelect": {
+            "selectedLabel": "Selected",
+            "ariaLabel": "Choose app language"
+        },
+        "themeToggle": {
+            "ariaLabel": "Toggle theme",
+            "label": "Theme"
+        },
+        "techStack": {
+            "title": "Technologies I use/have used"
         }
     },
     "views": {
         "home": {
-            "title": "Under construction...",
-            "subtitle": "Soon you will be able to find here some info about me and possibly some posts."
+            "author": {
+                "name": "Heitor Fidelis",
+                "role": "Full Stack Developer"
+            }
         },
         "notFound": {
             "title": "Oops! It looks like this page doesn't exists...",
