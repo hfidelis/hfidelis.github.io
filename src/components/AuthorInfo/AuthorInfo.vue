@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
 import AvatarBox from '@/components/AvatarBox/AvatarBox.vue'
 
 const props = defineProps({
@@ -7,18 +6,14 @@ const props = defineProps({
     type: String,
     required: false,
     default: () => {
-      const { t } = useI18n()
-
-      return t('views.home.author.name')
+      return 'views.home.author.name'
     }
   },
   role: {
     type: String,
     required: false,
     default: () => {
-      const { t } = useI18n()
-
-      return t('views.home.author.role')
+      return 'views.home.author.role'
     }
   }
 })
@@ -28,10 +23,10 @@ const props = defineProps({
   <div class="author__info">
     <div class="author__info__text">
       <h1>
-        {{ props.name }}
+        {{ $t(`${props.name}`) }}
       </h1>
       <p>
-        {{ props.role }}
+        {{ $t(`${props.role}`) }}
       </p>
     </div>
     <AvatarBox />

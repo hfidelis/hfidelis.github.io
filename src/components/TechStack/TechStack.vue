@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
 import { useDark } from '@vueuse/core'
 import { mdiTools } from '@mdi/js'
 
@@ -35,9 +34,7 @@ const props = defineProps({
   title: {
     type: String,
     default: () => {
-      const { t } = useI18n()
-
-      return t('components.techStack.title')
+      return 'components.techStack.title'
     }
   }
 })
@@ -54,7 +51,7 @@ const isDark = useDark()
         :path="mdiTools"
       />
       <h2>
-        {{ props.title }}
+        {{ $t(`${props.title}`) }}
       </h2>
     </div>
     <Marquee
