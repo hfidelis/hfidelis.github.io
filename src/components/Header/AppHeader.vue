@@ -228,7 +228,7 @@ watch(
   position: absolute;
   top: $header-height;
   left: 0;
-  z-index: 2;
+  z-index: 99;
 
   background-color: rgb(0 0 0 / 85%);
   animation: enter 0.5s ease;

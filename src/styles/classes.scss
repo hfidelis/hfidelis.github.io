@@ -1,8 +1,29 @@
 @import './variables.scss';
 
-.view__container {
+.layout__container {
     min-height: 70dvh !important;
     width: 100vw !important;
+}
+
+.adaptable__container {
+    min-width: 100% !important;
+    min-width: 100% !important;
+
+    padding: 4rem 25dvw;
+
+    @media screen {
+        @media (max-width: 1400px) {
+            padding: 4rem 20dvw;
+        }
+
+        @media (max-width: 1024px) {      
+            padding: 3rem 10dvw;
+        }
+
+        @media (max-width: 768px) {
+            padding: 3rem 1.8rem;
+        }
+    }
 }
 
 .h-100 {
