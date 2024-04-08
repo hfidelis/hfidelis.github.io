@@ -6,13 +6,13 @@
 @import './themes/light.scss';
 
 @font-face {
-    font-family: 'Monaspace Krypton', monospace;
-    src: url('../assets/fonts/MonaspaceKrypton.ttf') format('truetype');
+    font-family: MonaspaceKrypton;
+    src: url('../assets/fonts/monaspace_krypton.ttf') format('truetype');
     font-display: swap;
 }
 
 * {
-    font-family: 'Monaspace Krypton', monospace;
+    font-family: MonaspaceKrypton, monaspace;    
     box-sizing: border-box;
     margin: 0;
 }
