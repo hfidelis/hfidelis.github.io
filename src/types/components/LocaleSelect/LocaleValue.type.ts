@@ -1,8 +1,8 @@
 import Locale from "@/types/i18n/Locale"
 
-type LocaleValueType = {
+type LocaleValue = {
   value: Locale,
   flag: string,
 }
 
-export default LocaleValueType
+export default LocaleValue

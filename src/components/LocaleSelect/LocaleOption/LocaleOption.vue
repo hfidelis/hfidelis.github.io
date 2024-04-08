@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import LocaleValueType from '@/types/components/LocaleSelect/LocaleValueType'
+import LocaleValue from '@/types/components/LocaleSelect/LocaleValue.type'
 
 const props = defineProps({
   option: {
-    type: Object as () => LocaleValueType,
+    type: Object as () => LocaleValue,
     required: true,
   },
 })

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useDark } from '@vueuse/core'
-import FooterLink from '@/types/components/FooterLink/FooterLink'
+import FooterLink from '@/types/components/FooterLink/FooterLink.type'
 
 const props = defineProps<FooterLink>()
 const isDark = useDark()
@@ -12,6 +12,7 @@ const resolveLink = (link: string) => {
 
 <template>
   <button
+    type="button"
     role="link"
     class="footer__link__icon"
     :class="isDark ? 'dark__footer__link' : 'light__footer__link'"

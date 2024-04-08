@@ -6,7 +6,7 @@ import IconGmail from '@/components/Icons/IconGmail.vue'
 import IconGithub from '@/components/Icons/IconGithub.vue'
 import IconLinkedin from '@/components/Icons/IconLinkedin.vue'
 import FooterLinkIcon from '@/components/FooterLinkIcon/FooterLinkIcon.vue'
-import FooterLink from '@/types/components/FooterLink/FooterLink'
+import FooterLink from '@/types/components/FooterLink/FooterLink.type'
 
 const isDark = useDark()
 
