@@ -1,39 +1,22 @@
 <script setup lang="ts">
-import Layout from '@/layout/Layout.vue';
-import AvatarBox from '@/components/AvatarBox/AvatarBox.vue';
+import Layout from '@/layout/Layout.vue'
+import AuthorInfo from '@/components/AuthorInfo/AuthorInfo.vue'
+import TechStack from '@/components/TechStack/TechStack.vue'
 </script>
 
 <template>
   <Layout>
-    <AvatarBox />
-    <h1>
-      {{ $t('views.home.title') }}
-    </h1>
-    <p>
-      {{ $t('views.home.subtitle') }}
-    </p>
+    <div class="home">
+      <AuthorInfo />
+      <TechStack />
+    </div>
   </Layout>
 </template>
 
 <style lang="scss" scoped>
 @import '@/styles/app.scss';
 
-main {
-  @include flex(column, center, center, 0.8rem);
-  min-height: 40dvh;
-  padding: 5rem 2rem;
-  text-align: center;
-  
-  > h1 {
-    font-size: $text-xl;
-    font-weight: 700;
-  }
-
-  > p {
-    font-size: $text-sm;
-    font-weight: 500;
-    text-wrap: pretty;
-    max-width: 30rem;
-  }
+.home {
+  @include flex(column, center, center, 4rem);
 }
 </style>
