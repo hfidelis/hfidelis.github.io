@@ -1,13 +1,13 @@
 {
     "test": "Teste em Português",
     "components": {
-        "localeSelect": {
-            "selectedLabel": "Selecionado",
-            "ariaLabel": "Selecione o idioma do site"
-        },
-        "themeToggle": {
-            "ariaLabel": "Mudar o tema do site",
-            "label": "Tema"
+        "header": {
+            "menuButton": {
+                "actions": {
+                    "open": "Abrir menu",
+                    "close": "Fechar menu"
+                }
+            }
         },
         "footer": {
             "title": "Quer entrar em contato comigo?",
@@ -17,19 +17,24 @@
         "footerLinkIcon": {
             "ariaLabel": "Abrir link de contato"
         },
-        "header": {
-            "menuButton": {
-                "actions": {
-                    "open": "Abrir menu",
-                    "close": "Fechar menu"
-                }
-            }
+        "localeSelect": {
+            "selectedLabel": "Selecionado",
+            "ariaLabel": "Selecione o idioma do site"
+        },
+        "themeToggle": {
+            "ariaLabel": "Mudar o tema do site",
+            "label": "Tema"
+        },
+        "techStack": {
+            "title": "Tecnologias que utilizo/já utilizei"
         }
     },
     "views": {
         "home": {
-            "title": "Em construção...",
-            "subtitle": "Em breve você poderá encontrar por aqui informações sobre mim e possivelmente algumas postagens."
+            "author": {
+                "name": "Heitor Fidelis",
+                "role": "Desenvolvedor Full Stack"
+            }
         },
         "notFound": {
             "title": "Ops! Parece que esta página não existe...",
