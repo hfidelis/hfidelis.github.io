@@ -111,6 +111,13 @@ export default {
 .select__wrapper,
 .multiselect {
   width: fit-content;
+  transition: all 0.45s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0.35rem $darker-cyan,
+                0 0 0.6rem $cyan;
+  }
 }
 </style>
 
