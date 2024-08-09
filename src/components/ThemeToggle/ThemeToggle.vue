@@ -52,10 +52,17 @@ const toggleDark = useToggle(isDark)
   cursor: pointer;
   overflow: hidden;
   height: $header-item-height;
+  transition: all 0.45s ease;
 
   > span {
     font-size: $text-sm;
     font-weight: 600;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0.35rem $darker-cyan,
+                0 0 0.6rem $cyan;
   }
 }
 
