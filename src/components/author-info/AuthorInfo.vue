@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AvatarBox from '@/components/AvatarBox/AvatarBox.vue'
+import AvatarBox from '@/components/avatar-box/AvatarBox.vue'
 
 const props = defineProps({
   name: {

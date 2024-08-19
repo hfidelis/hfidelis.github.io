@@ -5,8 +5,8 @@ import { RouterLink } from 'vue-router'
 import { mdiMenuOpen, mdiWindowClose } from '@mdi/js'
 
 import isMobile from '@/helpers/isMobile'
-import LocaleSelect from '@/components/LocaleSelect/LocaleSelect.vue'
-import ThemeToggle from '@/components/ThemeToggle/ThemeToggle.vue'
+import LocaleSelect from '@/components/locale-select/LocaleSelect.vue'
+import ThemeToggle from '@/components/theme-toggle/ThemeToggle.vue'
 
 const isDark = useDark()
 const isOpen = ref(false)

@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import { useDark } from '@vueuse/core'
 
 import Locale from '@/types/i18n/Locale'
-import LocaleOption from '@/components/LocaleSelect/LocaleOption/LocaleOption.vue'
-import LocaleValue from '@/types/components/LocaleSelect/LocaleValue.type'
+import LocaleOption from '@/components/locale-select/locale-option/LocaleOption.vue'
+import LocaleValue from '@/types/components/locale-select/LocaleValue.type'
 
 import ptBRFlag from '@/assets/flags/pt-BR.png'
 import enUSFlag from '@/assets/flags/en-US.png'

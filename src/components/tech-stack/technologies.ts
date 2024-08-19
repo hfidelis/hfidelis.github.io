@@ -1,4 +1,4 @@
-import Technology from '@/types/components/TechStack/Technology.type'
+import Technology from '@/types/components/tech-stack/Technology.type'
 
 import drf from '@/assets/images/technologies/drf.png'
 import vue from '@/assets/images/technologies/vue.png'

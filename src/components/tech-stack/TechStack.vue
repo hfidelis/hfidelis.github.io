@@ -2,8 +2,8 @@
 import { useDark } from '@vueuse/core'
 import { mdiTools } from '@mdi/js'
 
-import technologies from '@/components/TechStack/technologies'
-import Technology from '@/types/components/TechStack/Technology.type'
+import technologies from '@/components/tech-stack/technologies'
+import Technology from '@/types/components/tech-stack/Technology.type'
 
 const props = defineProps({
   stack: {

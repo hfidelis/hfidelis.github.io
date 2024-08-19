@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AuthorInfo from '@/components/AuthorInfo/AuthorInfo.vue'
-import TechStack from '@/components/TechStack/TechStack.vue'
+import AuthorInfo from '@/components/author-info/AuthorInfo.vue'
+import TechStack from '@/components/tech-stack/TechStack.vue'
 </script>
 
 <template>
