@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router'
 
-import Layout from '@/layout/Layout.vue'
 import notFound from '@/assets/images/404.svg'
 </script>
 

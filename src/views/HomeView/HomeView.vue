@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Layout from '@/layout/Layout.vue'
 import AuthorInfo from '@/components/AuthorInfo/AuthorInfo.vue'
 import TechStack from '@/components/TechStack/TechStack.vue'
 </script>
@@ -8,7 +7,7 @@ import TechStack from '@/components/TechStack/TechStack.vue'
   <Layout>
     <div class="home">
       <AuthorInfo />
-      <TechStack />
+      <TechStack />      
     </div>
   </Layout>
 </template>
