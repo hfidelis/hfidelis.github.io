@@ -45,8 +45,6 @@ import notFound from '@/assets/images/404.svg'
 .not__found__wrapper {
   @include flex(column, center, center);
 
-  padding: 3rem 3rem;
-
   > .not__found__image {
     max-width: 350px;
     min-width: 200px;
