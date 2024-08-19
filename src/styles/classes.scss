@@ -1,13 +1,14 @@
 @import './variables.scss';
+@import './mixins.scss';
 
 .layout__container {
+    @include flex(column, center, center);
     min-height: 70dvh !important;
     width: 100vw !important;
 }
 
 .adaptable__container {
-    min-width: 100% !important;
-    min-width: 100% !important;
+    width: 100% !important;
 
     padding: 4rem 25dvw;
 
