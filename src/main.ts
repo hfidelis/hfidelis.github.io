@@ -6,6 +6,8 @@ import SvgIcon from '@jamescoyle/vue-icon'
 import FloatingVue from 'floating-vue'
 import Vue3Marquee from 'vue3-marquee'
 
+import Layout from '@/layout/Layout.vue'
+
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import router from '@/router'
@@ -19,5 +21,6 @@ app
   .use(FloatingVue)
   .use(Vue3Marquee, { name: 'Marquee' })
   .component('SvgIcon', SvgIcon)
+  .component('Layout', Layout)
 
 app.mount('#app')
