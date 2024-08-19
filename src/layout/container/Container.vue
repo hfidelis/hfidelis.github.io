@@ -1,5 +1,5 @@
 <template>
-  <div class="adaptable__container">
+  <section class="adaptable__container">
     <slot />
-  </div>
+  </section>
 </template>
