@@ -5,14 +5,24 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: () => import('@/views/HomeView/HomeView.vue')
+      name: 'home',
+      component: () => import('@/views/home/Home.vue')
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('@/views/blog/Blog.vue'),
+    },
+    {
+      path: '/blog/post/:slug',
+      name: 'post',
+      component: () => import('@/views/post/Post.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
-      name: 'ErrorView',
-      component: () => import('@/views/NotFoundView/NotFound.vue'),
-  }
+      name: '404',
+      component: () => import('@/views/404/NotFound.vue'),
+    },
   ]
 })
 
