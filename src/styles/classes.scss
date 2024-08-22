@@ -1,5 +1,7 @@
 @import './variables.scss';
 @import './mixins.scss';
+@import './themes/dark.scss';
+@import './themes/light.scss';
 
 .layout__container {
     @include flex(column, center, center);
@@ -9,6 +11,7 @@
 
 .adaptable__container {
     width: 100% !important;
+    min-height: 70dvh !important;
 
     padding: 4rem 25dvw;
 
@@ -27,6 +30,11 @@
     }
 }
 
+.state__container {
+    @include flex(row, center, center);  
+    min-height: 100%;
+} 
+
 .h-100 {
     height: 100% !important;
 }
@@ -38,4 +46,46 @@
 .header__mobile__item {
     height: $header-item-height !important;
     width: $header-item-width !important;
+}
+
+.header__button {
+    @include flex(row, center, center, 0.6rem);
+    border: none;
+    border-radius: $radius-md;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    overflow: hidden;
+    height: $header-item-height;
+    transition: all 0.45s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 0.35rem $darker-cyan,
+                    0 0 0.6rem $cyan !important;
+    }
+
+    &.dark {
+        background-color: $primary-dark;
+        border: $border-sm solid $dark-border;
+        box-shadow: $dark-mode-shadow;
+
+        > span {
+            color: $primary-light;
+          }
+    }
+
+    &.light {
+        background-color: $primary-light;
+        border: $border-sm solid $light-border;
+        box-shadow: $light-mode-shadow;
+
+        > span {
+            color: $primary-dark;
+          }
+    }
+
+    > span {
+        font-size: $text-sm;
+        font-weight: 600;
+    }
 }
