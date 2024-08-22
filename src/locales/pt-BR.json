@@ -26,6 +26,10 @@
         },
         "techStack": {
             "title": "Tecnologias que utilizo/já utilizei"
+        },
+        "blogButton": {
+            "ariaLabel": "Abrir página do blog",
+            "label": "Blog"
         }
     },
     "views": {
@@ -39,6 +43,9 @@
             "title": "Ops! Parece que esta página não existe...",
             "subtitle": "Talvez você tenha digitado o endereço errado ou a página foi removida.",
             "back": "Voltar para a página inicial"
+        },
+        "blog": {
+            "title": "Blog"
         }
     }
 }
