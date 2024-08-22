@@ -7,17 +7,18 @@ import { mdiMenuOpen, mdiWindowClose } from '@mdi/js'
 import isMobile from '@/helpers/isMobile'
 import LocaleSelect from '@/components/locale-select/LocaleSelect.vue'
 import ThemeToggle from '@/components/theme-toggle/ThemeToggle.vue'
+import BlogButton from '@/components/blog-button/BlogButton.vue'
 
 const isDark = useDark()
-const isOpen = ref(false)
+const isOpen = ref<boolean>(false)
 
-const toggleOpen = () => {
+const toggleOpen = (): void => {
   isOpen.value = !isOpen.value
 }
 
 watch(
   () => isMobile.value,
-  (val) => {
+  (val: boolean): void => {
     if (val) {
       isOpen.value = false
     }
@@ -74,8 +75,9 @@ watch(
         v-if="!isMobile"
         class='actions__default'
       >
+        <BlogButton />
         <LocaleSelect />
-        <ThemeToggle />
+        <ThemeToggle />        
       </div>
       <Transition
         name="sidebar"
@@ -84,8 +86,9 @@ watch(
           v-if="isMobile && isOpen"
           class='actions__mobile'
         >
+          <BlogButton />
           <LocaleSelect />
-          <ThemeToggle />
+          <ThemeToggle />        
         </div>
       </Transition>
     </section>
