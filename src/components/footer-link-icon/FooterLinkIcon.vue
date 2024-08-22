@@ -5,7 +5,7 @@ import FooterLink from '@/types/components/footer-link/FooterLink.type'
 const props = defineProps<FooterLink>()
 const isDark = useDark()
 
-const resolveLink = (link: string) => {
+const resolveLink = (link: string): void => {
   window.open(link, '_blank')
 }
 </script>
