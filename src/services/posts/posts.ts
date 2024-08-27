@@ -1,62 +1,86 @@
+import { Octokit } from 'octokit'
+
+const octokit = new Octokit({
+    auth: import.meta.env.VITE_GITHUB_TOKEN,
+})
+
+const GITHUB_DATA = {
+    owner: 'hfidelis',
+    repo: 'hfidelis.github.io',
+    path: 'src/services/posts/files',
+}
+const GITHUB_REQUEST = 'GET /repos/{owner}/{repo}/contents/{path}'
+
 interface Post {
     slug: string
     lang: string
     content: string
 }
 
-const GITHUB_RAW_HOST = 'https://raw.githubusercontent.com'
-const GITHUB_RAW_PATH = 'hfidelis/hfidelis.github.io/main/src/services/posts/files/'
-const GITHUB_RAW_URL = `${GITHUB_RAW_HOST}/${GITHUB_RAW_PATH}`
+interface File {
+    download_url: string
+    name: string
+}
 
-const posts = import.meta.glob(
-    '@/services/posts/files/*.md',
-    { import: 'default', eager: true },
-)
-const postPaths = Object.keys(posts)
+const getPostContent = async (link: string): Promise<string> => {
+    try {
+        const rawContent = await fetch(link)
 
-const getPostContent = async (path: string): Promise<string> => {    
-    const content = await import(path)
-
-    const extractedPath = content.default.split('/').pop()
-
-    const rawContent = await fetch(GITHUB_RAW_URL + extractedPath)
-
-    return await rawContent.text()
+        return await rawContent.text()
+    } catch (error) {
+        throw new Error('Error fetching post content')
+    }
 }
 
 export const getAllPosts = async () => {
-    const postsContent = {}
+    try {
+        const postsContent = {}
 
-    const promises = postPaths.map(async (path: string): Promise<Post> => {
-        const content: string = await getPostContent(path)
-
-        const formattedPath = path.split('/').pop()?.replace('.md', '')
-
-        const [ slug, lang ]= formattedPath!.split('.')
-        
-        
-        return { slug, lang, content }
-    })
-
-    const results: Array<Post> = await Promise.all(promises)
-
-    results.forEach((post: Post): void => {        
-        if (!(post.slug in postsContent)) {
-            postsContent[post.slug] = {}
-        }
-
-        postsContent[post.slug][post.lang] = post.content
-    })
-
-    return postsContent
+        const { data } = await octokit.request(GITHUB_REQUEST, GITHUB_DATA) as any
+    
+        const mappedFiles = data.map((file: any) => {
+            const fileData: File = {
+                download_url: file.download_url,
+                name: file.name,
+            }
+            
+            return fileData
+        })
+    
+        const promises = mappedFiles.map(async (file: File): Promise<Post> => {
+            const content: string = await getPostContent(file.download_url)        
+    
+            const [ slug, lang ]= file.name.replace('md', '').split('.')
+    
+            return { slug, lang, content }
+        })
+    
+        const results: Array<Post> = await Promise.all(promises)
+    
+        results.forEach((post: Post): void => {        
+            if (!(post.slug in postsContent)) {
+                postsContent[post.slug] = {}
+            }
+    
+            postsContent[post.slug][post.lang] = post.content
+        })
+    
+        return postsContent
+    } catch (error) {
+        throw new Error('Error fetching posts')
+    }    
 }
 
 export const getPostContents = async (slug: string) => {
-    const posts = await getAllPosts()
+    try {
+        const posts = await getAllPosts()
 
-    if (!(slug in posts)) {
-        throw new Error('Post not found')
+        if (!(slug in posts)) {
+            throw new Error('Post not found')
+        }
+    
+        return posts[slug]
+    } catch (error) {
+        throw new Error('Error fetching post content')
     }
-
-    return posts[slug]
 }
