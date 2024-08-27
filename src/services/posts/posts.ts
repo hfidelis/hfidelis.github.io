@@ -1,8 +1,6 @@
 import { Octokit } from 'octokit'
 
-const octokit = new Octokit({
-    auth: import.meta.env.VITE_GITHUB_TOKEN,
-})
+const octokit = new Octokit()
 
 const GITHUB_DATA = {
     owner: 'hfidelis',
