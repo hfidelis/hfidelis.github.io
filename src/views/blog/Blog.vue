@@ -1,6 +1,7 @@
 <script lang="ts">
 import { ref, onMounted, watch } from 'vue'
 import { useDark } from '@vueuse/core'
+import { mdiNoteRemove } from '@mdi/js'
 import { getAllPosts } from '@/services/posts/posts'
 
 import Layout from '@/layout/Layout.vue'
@@ -21,7 +22,7 @@ export default {
 
     const fetchPosts = (): void => {
       getAllPosts().then((contents): void => {
-                            posts.value = contents
+                            posts.value = contents                            
                           })
                           .catch((): void => {
                             isError.value = true
@@ -47,7 +48,8 @@ export default {
       isDark,
       isError,
       isLoading,
-      currentLocale,      
+      mdiNoteRemove,
+      currentLocale,
     }
   }
 }
@@ -70,9 +72,26 @@ export default {
         v-else-if="isError"
       >
         <section
-          class="state__container"
+          class="state__container not__found"
         >
-          <span>// TODO: Erro</span>
+          <SvgIcon
+            size="48"
+            type="mdi"
+            :path="mdiNoteRemove"
+          />
+          <h1>
+            {{ $t('views.blog.notFound.title') }}
+          </h1>
+          <span>
+            {{ $t('views.blog.notFound.subtitle') }}
+          </span>
+          <RouterLink
+            :to="'/'"            
+            class="not__found__link"
+            :class="isDark ? 'dark' : 'light'"
+          >
+            {{ $t('views.blog.notFound.back') }}
+          </RouterLink>
         </section>
       </template>
 
@@ -88,15 +107,22 @@ export default {
           </h1>
           <hr>
         </section>
-        <section>          
-          <PostPreview
+
+        <section
+          class="blog__container"
+        >
+          <div
+            class="blog__post"
             v-for="(post, index) in Object.keys(posts)"
-            :key="`post[${index+1}-${post}-${currentLocale}]`"
-            :locale="currentLocale"
-            :slug="post"
-            :post="posts[post]"
-            :style="{ marginBottom: `${index === Object.keys(posts).length - 1 ? 0 : 2}rem` }"
-          />
+          >
+            <PostPreview              
+              :key="`post[${index+1}-${post}-${currentLocale}]`"
+              :locale="currentLocale"
+              :slug="post"
+              :post="posts[post]"
+              :style="{ marginBottom: `${index === Object.keys(posts).length - 1 ? 0 : 2}rem` }"
+            />
+          </div>
         </section>
       </template>
     </FadeTransition>
@@ -105,6 +131,32 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/app.scss';
+
+.not__found {
+  @include flex(column, center, center, 0.6rem);
+  text-align: center;
+
+  .not__found__link {
+    background-color: $dark-cyan;
+    color: inherit;
+    padding: 0.6rem;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &.dark {
+      box-shadow: $dark-mode-shadow;
+    }
+
+    &.light {
+      box-shadow: $light-mode-shadow;
+    }
+
+    &:hover {
+      background-color: $darker-cyan;
+    }
+  }
+}
 
 .page__title {  
   > h1 {
@@ -130,5 +182,27 @@ export default {
   }
 
   margin-bottom: 2rem;
+}
+
+.blog__container {  
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 5%;
+
+  @media (max-width: 1080px) {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  > .blog__post {
+    width: 45%;
+    flex-grow: 1;
+
+    @media (max-width: 1080px) {
+      width: 100%;
+    }
+  }
 }
 </style>
