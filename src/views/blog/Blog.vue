@@ -95,7 +95,7 @@ export default {
         </section>
       </template>
 
-      <template
+      <div
         v-else-if="posts"
       >
         <section
@@ -124,7 +124,7 @@ export default {
             />
           </div>
         </section>
-      </template>
+      </div>
     </FadeTransition>
   </Layout>
 </template>

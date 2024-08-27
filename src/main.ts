@@ -8,6 +8,7 @@ import Vue3Marquee from 'vue3-marquee'
 
 import Layout from '@/layout/Layout.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
+import FadeTransition from '@/components/fade-transition/FadeTransition.vue'
 
 import { createApp } from 'vue'
 import App from '@/App.vue'
@@ -24,5 +25,6 @@ app
   .component('SvgIcon', SvgIcon)
   .component('Layout', Layout)
   .component('Spinner', Spinner)
+  .component('FadeTransition', FadeTransition)
 
 app.mount('#app')
