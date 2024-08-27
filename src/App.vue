@@ -3,7 +3,6 @@ import { RouterView } from 'vue-router'
 
 import AppHeader from '@/components/header/AppHeader.vue'
 import AppFooter from '@/components/footer/AppFooter.vue'
-import FadeTransition from '@/components/fade-transition/FadeTransition.vue'
 </script>
 
 <template>  

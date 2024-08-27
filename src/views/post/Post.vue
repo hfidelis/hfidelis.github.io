@@ -8,12 +8,9 @@ import { getPostContents } from '@/services/posts/posts'
 
 import 'md-editor-v3/lib/preview.css'
 
-import FadeTransition from '@/components/fade-transition/FadeTransition.vue'
-
 export default {
   components: {    
     MdPreview,
-    FadeTransition
   },
   data() {    
     const route = useRoute()
