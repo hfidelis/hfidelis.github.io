@@ -1,6 +1,7 @@
 <script lang="ts">
 import { useRoute } from 'vue-router'
 import { useDark } from '@vueuse/core'
+import { mdiNoteRemove } from '@mdi/js'
 import { MdPreview } from 'md-editor-v3'
 import { ref, watch, onMounted } from 'vue'
 import { getPostContents } from '@/services/posts/posts'
@@ -48,7 +49,9 @@ export default {
     watch(
       () => currentLocale.value,
       () => {
-        currentContent.value = postContents.value![currentLocale.value]
+        if (postContents.value) {
+          currentContent.value = postContents.value![currentLocale.value]
+        }        
       }
     )
 
@@ -56,10 +59,12 @@ export default {
       fetchPostData()
     })
 
-    return {
+    return {      
+      route,
       isDark,
       isError,
       isLoading,
+      mdiNoteRemove,
       currentLocale, 
       currentContent,
     }
@@ -84,15 +89,50 @@ export default {
         v-else-if="isError"
       >
         <section
-          class="state__container"
+          class="state__container not__found"
         >
-          <span>// TODO: Erro</span>
+          <SvgIcon
+            size="48"
+            type="mdi"
+            :path="mdiNoteRemove"
+          />
+          <h1>
+            {{ $t('views.post.notFound.title') }}
+          </h1>
+          <span>
+            {{ $t('views.post.notFound.subtitle') }}
+          </span>
+          <RouterLink
+            :to="'/'"            
+            class="not__found__link"
+            :class="isDark ? 'dark' : 'light'"
+          >            
+            {{ $t('views.post.notFound.back') }}
+          </RouterLink>
         </section>
       </template>
 
-      <template
+      <article
         v-else-if="currentContent"
       >
+        <div
+          class="blog__breadcrumb"
+        >
+          <RouterLink
+            :to="'/blog'"
+            class="blog__breadcrumb__link"
+          >
+            {{ $t('views.blog.title') }}
+          </RouterLink>
+          <span>></span>
+          <span>{{ route.params.slug }}</span>
+        </div>
+
+        <hr
+          class="divider"
+          :class="isDark ? 'dark' : 'light'"
+        >
+
         <MdPreview
           :language="currentLocale"
           :theme="isDark ? 'dark' : 'light'"
@@ -103,13 +143,68 @@ export default {
           :preview-theme="'github'"
           :model-value="currentContent"
         />
-      </template>
+      </article>
     </FadeTransition>
   </Layout>
 </template>
 
 <style lang="scss" scoped>
 @import '@/styles/app.scss';
+
+.divider {
+  margin: 1rem 0;
+  border: 0;
+
+  &.dark {
+    border-top: 2px solid $dark-border;
+  }
+
+  &.light {
+    border-top: 2px solid $light-border;
+  }
+}
+
+.not__found {
+  @include flex(column, center, center, 0.6rem);
+  text-align: center;
+
+  .not__found__link {
+    background-color: $dark-cyan;
+    color: inherit;
+    padding: 0.6rem;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &.dark {
+      box-shadow: $dark-mode-shadow;
+    }
+
+    &.light {
+      box-shadow: $light-mode-shadow;
+    }
+
+    &:hover {
+      background-color: $darker-cyan;
+    }
+  }
+}
+
+.blog__breadcrumb {
+  @include flex(row, center, flex-start, 0.6rem);
+  font-size: text-md;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+
+  .blog__breadcrumb__link {    
+    text-decoration: underline;
+    color: inherit;
+  }
+
+  @media (max-width: 768px) {
+    font-size: text-sm;
+  }
+}
 
 .dark__preview {
   box-shadow: $dark-mode-shadow !important;
