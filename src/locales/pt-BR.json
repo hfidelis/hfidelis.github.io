@@ -45,7 +45,19 @@
             "back": "Voltar para a página inicial"
         },
         "blog": {
-            "title": "Blog"
+            "title": "Blog",
+            "notFound": {
+                "title": "Ops! Houve um erro ao carregar as postagens...",
+                "subtitle": "Tente novamente ou volte mais tarde.",
+                "back": "Voltar para o início"
+            }
+        },
+        "post": {
+            "notFound": {
+                "title": "Ops! Parece que este post não existe...",
+                "subtitle": "Talvez você tenha digitado o endereço errado ou o post foi removido.",
+                "back": "Voltar para o início"
+            }
         }
     }
 }
