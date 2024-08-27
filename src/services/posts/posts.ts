@@ -4,16 +4,22 @@ interface Post {
     content: string
 }
 
+const GITHUB_RAW_HOST = 'https://raw.githubusercontent.com'
+const GITHUB_RAW_PATH = 'hfidelis/hfidelis.github.io/main/src/services/posts/files/'
+const GITHUB_RAW_URL = `${GITHUB_RAW_HOST}/${GITHUB_RAW_PATH}`
+
 const posts = import.meta.glob(
     '@/services/posts/files/*.md',
     { import: 'default', eager: true },
 )
 const postPaths = Object.keys(posts)
 
-const getPostContent = async (path: string): Promise<string> => {
+const getPostContent = async (path: string): Promise<string> => {    
     const content = await import(path)
 
-    const rawContent = await fetch(content.default)
+    const extractedPath = content.default.split('/').pop()
+
+    const rawContent = await fetch(GITHUB_RAW_URL + extractedPath)
 
     return await rawContent.text()
 }
