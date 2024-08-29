@@ -2,9 +2,9 @@
 import { ref, onMounted, watch } from 'vue'
 import { useDark } from '@vueuse/core'
 import { mdiNoteRemove } from '@mdi/js'
-import { getAllPosts } from '@/services/posts/posts'
 
 import Layout from '@/layout/Layout.vue'
+import postService from '@/services/post/post'
 import PostPreview from '@/components/post-preview/PostPreview.vue'
 
 export default {
@@ -21,15 +21,19 @@ export default {
     const currentLocale = ref<string>(this.$i18n.locale.toLowerCase())
 
     const fetchPosts = (): void => {
-      getAllPosts().then((contents): void => {
-                            posts.value = contents                            
-                          })
-                          .catch((): void => {
-                            isError.value = true
-                          })
-                          .finally((): void => {
-                            setTimeout(() => { isLoading.value = false }, 500)
-                          })
+      postService
+        .getAllPosts()
+        .then((contents): void => {
+                posts.value = contents
+              })
+              .catch((): void => {
+                isError.value = true
+              })
+              .finally((): void => {
+                setTimeout(() => {
+                  isLoading.value = false
+                }, 500)
+              })
     }
 
     watch(
