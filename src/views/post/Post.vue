@@ -3,23 +3,54 @@ import { useRoute } from 'vue-router'
 import { useDark } from '@vueuse/core'
 import { mdiNoteRemove } from '@mdi/js'
 import { MdPreview } from 'md-editor-v3'
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 
 import 'md-editor-v3/lib/preview.css'
+
 import postService from '@/services/post/post'
+import SocialShare from '@/components/social-share/SocialShare.vue'
+import SocialOption from '@/types/components/social-share/SocialOption.type'
+
+interface ShareButtonBase {
+  type: SocialOption
+  url: string
+}
 
 export default {
   components: {    
     MdPreview,
+    SocialShare,
   },
   data() {    
     const route = useRoute()
     const isDark = useDark()
+    const fullUrl = ref<string>('')
     const isError = ref<boolean>(false)
-    const isLoading = ref<boolean>(true)
-    const postContents = ref<Object | null>(null)
+    const isLoading = ref<boolean>(true)    
+    const postContents = ref<Object | null>(null)    
     const currentContent = ref<string | null>(null)
     const currentLocale = ref<string>(this.$i18n.locale.toLowerCase())
+
+    const SHARE_BUTTONS = computed<Array<ShareButtonBase>>(() => {
+      return [
+        {
+          type: 'facebook',
+          url: `https://www.facebook.com/sharer/sharer.php?u=${fullUrl.value}`
+        },
+        {
+          type: 'twitter',
+          url: `https://twitter.com/intent/tweet?&url=${fullUrl.value}`
+        },
+        {
+          type: 'linkedin',
+          url: `https://www.linkedin.com/shareArticle?mini=true&url=${fullUrl.value}`
+        },
+        {
+          type: 'whatsapp',
+          url: `https://api.whatsapp.com/send?text=${fullUrl.value}`
+        }
+      ]
+    })
 
     const fetchPostData = (): void => {
       const { slug } = route.params
@@ -58,13 +89,16 @@ export default {
 
     onMounted(() => {
       fetchPostData()
+      fullUrl.value = encodeURIComponent(window.location.href)      
     })
 
     return {      
       route,
+      fullUrl,
       isDark,
       isError,
       isLoading,
+      SHARE_BUTTONS,
       mdiNoteRemove,
       currentLocale, 
       currentContent,
@@ -129,6 +163,43 @@ export default {
           <span>{{ route.params.slug }}</span>
         </div>
 
+        <section
+          class="blog__social"
+        >
+          <div class="social__author">
+            <div
+              class="author__wrapper"
+              :class="isDark ? 'dark' : 'light'"
+            >
+              <img
+                class="author__avatar"
+                src="@/assets/images/me-irl.jpeg"
+                alt="Heitor Fidelis"
+              />
+            </div>
+            <span>
+              {{ $t('views.post.defaultAuthor') }}
+            </span>
+          </div>
+
+          <div class="social__share">
+            <span>
+              {{ $t('views.post.share') }}:
+            </span>
+            <div
+              class="share__buttons"
+            >
+              <SocialShare                                  
+                v-for="(button, index) in SHARE_BUTTONS"
+                :key="`${fullUrl}-${index}`"
+                :type="button.type"                
+                :url="button.url"
+                :isDark="isDark"
+              />              
+            </div>
+          </div>
+        </section>
+
         <hr
           class="divider"
           :class="isDark ? 'dark' : 'light'"
@@ -151,6 +222,66 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/styles/app.scss';
+
+.blog__social {
+  margin-top: 2rem;
+  @include flex(row, center, space-between);
+
+  @media (max-width: 1024px) {
+    @include flex(column, flex-start, center, 1rem);
+  }
+
+  > .social__author {
+    @include flex(row, center, center, 0.8rem);
+
+    > span {
+      font-weight: 600;
+      font-size: $text-md;
+
+      @media (max-width: 1024px) {
+        font-size: $text-sm;
+      }
+    }
+
+    > .author__wrapper {
+      @include flex(row, center, center);
+      border-radius: 50%;
+
+      &.dark {
+        box-shadow: $dark-mode-shadow;
+        border: 2px solid $dark-border;
+      }
+
+      &.light {
+        box-shadow: $light-mode-shadow;
+        border: 2px solid $light-border;
+      }
+
+      > .author__avatar {
+        width: 4.25rem;
+        height: 4.25rem;
+        border-radius: 50%;
+
+        @media (max-width: 1024px) {
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+      }
+    }
+  }
+
+  > .social__share {
+    @include flex(row, center, center, 0.6rem);  
+
+    > span {
+      font-weight: 600;
+    }
+
+    > .share__buttons {
+      @include flex(row, center, flex-start, 0.3rem);
+    }
+  }
+}
 
 .divider {
   margin: 1rem 0;
