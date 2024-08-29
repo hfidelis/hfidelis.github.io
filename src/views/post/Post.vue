@@ -4,9 +4,9 @@ import { useDark } from '@vueuse/core'
 import { mdiNoteRemove } from '@mdi/js'
 import { MdPreview } from 'md-editor-v3'
 import { ref, watch, onMounted } from 'vue'
-import { getPostContents } from '@/services/posts/posts'
 
 import 'md-editor-v3/lib/preview.css'
+import postService from '@/services/post/post'
 
 export default {
   components: {    
@@ -24,16 +24,20 @@ export default {
     const fetchPostData = (): void => {
       const { slug } = route.params
 
-      getPostContents(slug as string).then((contents): void => {
-                              postContents.value = contents
-                              currentContent.value = contents[currentLocale.value]
-                            })
-                            .catch((): void => {
-                              isError.value = true
-                            })
-                            .finally((): void => {
-                              setTimeout(() => { isLoading.value = false }, 500)
-                            })
+      postService
+        .getPostData(slug as string)
+        .then((contents: { [key: string]: string }): void => {
+                postContents.value = contents
+                currentContent.value = contents[currentLocale.value]
+              })
+              .catch((): void => {
+                isError.value = true
+              })
+              .finally((): void => {
+                setTimeout(() => {
+                  isLoading.value = false
+                }, 500)
+              })
     }
 
     watch(
