@@ -57,7 +57,9 @@
                 "title": "Ops! Parece que este post não existe...",
                 "subtitle": "Talvez você tenha digitado o endereço errado ou o post foi removido.",
                 "back": "Voltar para o início"
-            }
+            },
+            "share": "Compartilhar",
+            "defaultAuthor": "Heitor Fidelis"
         }
     }
 }
