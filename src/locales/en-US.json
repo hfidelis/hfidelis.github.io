@@ -57,7 +57,9 @@
                 "title": "Oops! It looks like this post doesn't exists...",
                 "subtitle": "Maybe you typed the wrong address or the post has been removed.",
                 "back": "Back to home"
-            }
+            },
+            "share": "Share",
+            "defaultAuthor": "Heitor Fidelis"
         }
     }
 }
