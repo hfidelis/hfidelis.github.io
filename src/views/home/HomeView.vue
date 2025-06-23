@@ -5,17 +5,9 @@ import TechStack from '@/components/tech-stack/TechStack.vue'
 
 <template>
   <Layout>
-    <div class="home">
+    <div class="flex flex-col items-center justify-center gap-[4rem]">
       <AuthorInfo />
-      <TechStack />      
+      <TechStack />
     </div>
   </Layout>
 </template>
-
-<style lang="scss" scoped>
-@import '@/styles/app.scss';
-
-.home {
-  @include flex(column, center, center, 4rem);
-}
-</style>

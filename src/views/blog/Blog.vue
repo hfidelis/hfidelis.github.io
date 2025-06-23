@@ -12,12 +12,12 @@ export default {
     Layout,
     PostPreview,
   },
-  data() {    
+  data() {
     const isDark = useDark()
 
     const posts = ref<Object | null>(null)
     const isLoading = ref<boolean>(true)
-    const isError = ref<boolean>(false)    
+    const isError = ref<boolean>(false)
     const currentLocale = ref<string>(this.$i18n.locale.toLowerCase())
 
     const fetchPosts = (): void => {
@@ -47,7 +47,7 @@ export default {
       fetchPosts()
     })
 
-    return {      
+    return {
       posts,
       isDark,
       isError,
@@ -66,7 +66,7 @@ export default {
         v-if="isLoading"
       >
         <section
-          class="state__container"
+          class="flex flex-col justify-center items-center min-h-full"
         >
           <Spinner />
         </section>
@@ -76,7 +76,7 @@ export default {
         v-else-if="isError"
       >
         <section
-          class="state__container not__found"
+          class="flex flex-col justify-center items-center min-h-full not__found"
         >
           <SvgIcon
             size="48"
@@ -90,7 +90,7 @@ export default {
             {{ $t('views.blog.notFound.subtitle') }}
           </span>
           <RouterLink
-            :to="'/'"            
+            :to="'/'"
             class="not__found__link"
             :class="isDark ? 'dark' : 'light'"
           >
@@ -119,7 +119,7 @@ export default {
             class="blog__post"
             v-for="(post, index) in Object.keys(posts)"
           >
-            <PostPreview              
+            <PostPreview
               :key="`post[${index+1}-${post}-${currentLocale}]`"
               :locale="currentLocale"
               :slug="post"
@@ -162,12 +162,12 @@ export default {
   }
 }
 
-.page__title {  
+.page__title {
   > h1 {
     font-size: $text-4xl;
     font-weight: 600;
     margin-bottom: 0.3rem;
-  }  
+  }
 
   > hr {
     border: 0;
@@ -188,7 +188,7 @@ export default {
   margin-bottom: 2rem;
 }
 
-.blog__container {  
+.blog__container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -199,7 +199,7 @@ export default {
     flex-direction: column;
     gap: 0;
   }
-  
+
   > .blog__post {
     width: 45%;
     flex-grow: 1;

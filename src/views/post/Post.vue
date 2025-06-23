@@ -17,17 +17,17 @@ interface ShareButtonBase {
 }
 
 export default {
-  components: {    
+  components: {
     MdPreview,
     SocialShare,
   },
-  data() {    
+  data() {
     const route = useRoute()
     const isDark = useDark()
     const fullUrl = ref<string>('')
     const isError = ref<boolean>(false)
-    const isLoading = ref<boolean>(true)    
-    const postContents = ref<Object | null>(null)    
+    const isLoading = ref<boolean>(true)
+    const postContents = ref<Object | null>(null)
     const currentContent = ref<string | null>(null)
     const currentLocale = ref<string>(this.$i18n.locale.toLowerCase())
 
@@ -83,16 +83,16 @@ export default {
       () => {
         if (postContents.value) {
           currentContent.value = postContents.value![currentLocale.value]
-        }        
+        }
       }
     )
 
     onMounted(() => {
       fetchPostData()
-      fullUrl.value = encodeURIComponent(window.location.href)      
+      fullUrl.value = encodeURIComponent(window.location.href)
     })
 
-    return {      
+    return {
       route,
       fullUrl,
       isDark,
@@ -100,7 +100,7 @@ export default {
       isLoading,
       SHARE_BUTTONS,
       mdiNoteRemove,
-      currentLocale, 
+      currentLocale,
       currentContent,
     }
   }
@@ -114,7 +114,7 @@ export default {
         v-if="isLoading"
       >
         <section
-          class="state__container"
+          class="flex flex-col justify-center items-center min-h-full"
         >
           <Spinner />
         </section>
@@ -124,7 +124,7 @@ export default {
         v-else-if="isError"
       >
         <section
-          class="state__container not__found"
+          class="flex flex-col justify-center items-center min-h-full not__found"
         >
           <SvgIcon
             size="48"
@@ -138,10 +138,10 @@ export default {
             {{ $t('views.post.notFound.subtitle') }}
           </span>
           <RouterLink
-            :to="'/'"            
+            :to="'/'"
             class="not__found__link"
             :class="isDark ? 'dark' : 'light'"
-          >            
+          >
             {{ $t('views.post.notFound.back') }}
           </RouterLink>
         </section>
@@ -189,13 +189,13 @@ export default {
             <div
               class="share__buttons"
             >
-              <SocialShare                                  
+              <SocialShare
                 v-for="(button, index) in SHARE_BUTTONS"
                 :key="`${fullUrl}-${index}`"
-                :type="button.type"                
+                :type="button.type"
                 :url="button.url"
                 :isDark="isDark"
-              />              
+              />
             </div>
           </div>
         </section>
@@ -271,7 +271,7 @@ export default {
   }
 
   > .social__share {
-    @include flex(row, center, center, 0.6rem);  
+    @include flex(row, center, center, 0.6rem);
 
     > span {
       font-weight: 600;
@@ -328,7 +328,7 @@ export default {
   font-weight: 600;
   margin-bottom: 0.8rem;
 
-  .blog__breadcrumb__link {    
+  .blog__breadcrumb__link {
     text-decoration: underline;
     color: inherit;
   }

@@ -1,5 +1,4 @@
-import '@/styles/app.scss'
-
+import '@/styles.css'
 import 'floating-vue/dist/style.css'
 
 import SvgIcon from '@jamescoyle/vue-icon'
