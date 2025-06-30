@@ -4,7 +4,7 @@ import { useDark } from '@vueuse/core'
 
 import Locale from '@/types/i18n/Locale'
 import LocaleOption from '@/components/locale-select/locale-option/LocaleOption.vue'
-import LocaleValue from '@/types/components/locale-select/LocaleValue.type'
+import LocaleValue from '@/components/locale-select/locale-value/LocaleValue.type'
 
 import ptBRFlag from '@/assets/flags/pt-BR.png'
 import enUSFlag from '@/assets/flags/en-US.png'
@@ -29,7 +29,7 @@ export default {
       flag: countryFlags[this.$i18n.locale as Locale],
     })
 
-    const locales = this.$i18n.availableLocales.map((k): LocaleValue => {      
+    const locales = this.$i18n.availableLocales.map((k): LocaleValue => {
       return {
         value: k as Locale,
         flag: countryFlags[k as Locale],
@@ -40,7 +40,7 @@ export default {
       selectedLocale.value = locale
       this.$i18n.locale = locale.value
 
-      localStorage.setItem('i18nLocale', locale.value)      
+      localStorage.setItem('i18nLocale', locale.value)
     }
 
     const checkStorageLocale = (): void => {

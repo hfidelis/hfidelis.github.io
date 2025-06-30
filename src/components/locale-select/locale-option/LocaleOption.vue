@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LocaleValue from '@/types/components/locale-select/LocaleValue.type'
+import LocaleValue from '@/components/locale-select/locale-value/LocaleValue.type'
 
 const props = defineProps({
   option: {
@@ -10,27 +10,14 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="locale__option">
+  <div class="flex items-center justify-items-start gap-1.5 flex-nowrap font-bold">
     <img
       :src="props.option.flag"
       :alt="`${props.option.value} flag image`"
-      class="locale__flag"
+      class="h-4 w-[1.475rem]"
     />
-    <span class="locale__value">
+    <span>
       {{ props.option.value }}
     </span>
   </div>
 </template>
-
-<style lang="scss" scoped>
-@import '@/styles/app.scss';
-.locale__option {
-  @include flex(row, center, start, 0.4rem, nowrap);
-  font-weight: 600;
-
-  > .locale__flag {
-    width: 1.475rem;
-    height: 1rem;
-  }
-}
-</style>
