@@ -3,7 +3,6 @@ import 'floating-vue/dist/style.css'
 
 import SvgIcon from '@jamescoyle/vue-icon'
 import FloatingVue from 'floating-vue'
-import Vue3Marquee from 'vue3-marquee'
 
 import Layout from '@/layout/Layout.vue'
 import Spinner from '@/components/spinner/Spinner.vue'
@@ -20,7 +19,6 @@ app
   .use(router)
   .use(i18n)
   .use(FloatingVue)
-  .use(Vue3Marquee, { name: 'Marquee' })
   .component('SvgIcon', SvgIcon)
   .component('Layout', Layout)
   .component('Spinner', Spinner)
