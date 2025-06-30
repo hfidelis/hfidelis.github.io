@@ -1,4 +1,4 @@
-{    
+{
     "components": {
         "header": {
             "menuButton": {
@@ -40,21 +40,21 @@
             }
         },
         "notFound": {
-            "title": "Oops! It looks like this page doesn't exists...",
+            "title": "Oops! It looks like this page doesn't exists.",
             "subtitle": "Maybe you typed the wrong address or the page has been removed.",
             "back": "Back to home page"
         },
         "blog": {
             "title": "Blog",
             "notFound": {
-                "title": "Oops! There was an error loading the posts...",
+                "title": "Oops! There was an error loading the posts.",
                 "subtitle": "Try again or come back later.",
                 "back": "Back to home"
             }
         },
         "post": {
             "notFound": {
-                "title": "Oops! It looks like this post doesn't exists...",
+                "title": "Oops! It looks like this post doesn't exists.",
                 "subtitle": "Maybe you typed the wrong address or the post has been removed.",
                 "back": "Back to home"
             },
