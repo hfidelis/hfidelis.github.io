@@ -14,7 +14,7 @@ const props = defineProps({
 <template>
   <NAvatar
     :src="props.source"
-    :size="220"
+    :size="180"
     round
   >
   </NAvatar>
