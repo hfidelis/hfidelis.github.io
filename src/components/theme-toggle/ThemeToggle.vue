@@ -19,12 +19,12 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <button    
-    id="theme__toggle__btn"
-    class="header__button"
+  <button
+    :key="isDark ? 'dark' : 'light'"
+    class="h-[2.75rem] border-[0.15rem] rounded-md py-[0.2rem] px-[0.6rem] cursor-pointer overflow-hidden transition-all hover:scale-105"
     :class="[
-      isDark ? 'dark' : 'light',
-      isMobile ? 'header__mobile__item' : '',
+      isMobile ? 'w-[8.3rem]' : '',
+      isDark ? 'border-secondary-dark hover:shadow-dark' : 'border-secondary-light hover:shadow-light ',
     ]"
     :aria-label="$t('components.themeToggle.ariaLabel')"
     @click="toggleDark()"
@@ -41,21 +41,3 @@ const toggleDark = useToggle(isDark)
     />
   </button>
 </template>
-
-<style lang="scss" scoped >
-@import '@/styles/app.scss';
-
-#theme__toggle__btn {
-  &.dark {
-    > svg {
-      color: $primary-light;
-    }
-  }
-
-  &.light{
-    > svg {
-      color: $primary-dark;
-    }
-  }
-}
-</style>
