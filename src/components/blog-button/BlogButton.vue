@@ -39,8 +39,6 @@ const redirectToBlog = () => {
 </template>
 
 <style lang="scss" scoped >
-@import '@/styles/app.scss';
-
 #blog__button {
   &.dark {
     > svg {
@@ -73,25 +71,25 @@ const redirectToBlog = () => {
 
 @keyframes light-star-pulse {
   0% {
-    filter: drop-shadow(0 0 0.75rem $star-dark);
+    filter: drop-shadow(0 0 0.75rem #c2880c);
   }
   50% {
-    filter: drop-shadow(0 0 0.75rem $star-light);
+    filter: drop-shadow(0 0 0.75rem #f5b11d);
   }
   100% {
-    filter: drop-shadow(0 0 0.75rem $star-dark);
+    filter: drop-shadow(0 0 0.75rem #c2880c);
   }
 }
 
 @keyframes dark-star-pulse {
   0% {
-    filter: drop-shadow(0 0 0.75rem $star-light);
+    filter: drop-shadow(0 0 0.75rem #f5b11d);
   }
   50% {
-    filter: drop-shadow(0 0 0.75rem $star-dark);
+    filter: drop-shadow(0 0 0.75rem #c2880c);
   }
   100% {
-    filter: drop-shadow(0 0 0.75rem $star-light);
+    filter: drop-shadow(0 0 0.75rem #f5b11d);
   }
 }
 </style>
