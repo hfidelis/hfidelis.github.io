@@ -3,7 +3,7 @@ import Container from '@/layout/container/Container.vue'
 </script>
 
 <template>
-  <main class="flex flex-col items-center justify-center w-[100dvw] min-h-[70dvh]">
+  <main class="flex flex-col items-center justify-center w-[100dvw] max-h-[70dvh] scroll-auto overflow-y-auto">
     <Container>
       <slot />
     </Container>
