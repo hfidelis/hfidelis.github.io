@@ -12,6 +12,10 @@
     --color-accent-light: #f26c00;
 
     --animate-fade-in-out: fade-in-out 1.2s infinite ease-in-out;
+    --shadow-dark: 0 0.5px 0.75rem 0.15rem rgba(255, 120, 30, 0.55),
+                          0 0.25rem 0.45rem -0.15rem rgba(255, 140, 50, 0.4);
+    --shadow-light: 0 0.75px 0.75rem 0.1rem rgba(0, 0, 0, 0.25),
+                        0 0.25rem 0.5rem -0.125rem rgba(0, 0, 0, 0.15);
 
     @keyframes fade-in-out {
       0% {
@@ -78,7 +82,7 @@ html, body {
 
 body {
     overflow-x: hidden;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(18px);
     background-position: center;
 }
 
