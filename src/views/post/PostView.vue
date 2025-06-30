@@ -173,7 +173,7 @@ export default {
             >
               <img
                 class="author__avatar"
-                src="@/assets/images/me-irl.jpeg"
+                src="@/assets/images/me.jpeg"
                 alt="Heitor Fidelis"
               />
             </div>
