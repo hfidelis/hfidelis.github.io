@@ -4,8 +4,26 @@
     --breakpoint-xl: 1400px;
     --breakpoint-lg: 1024px;
     --breakpoint-md: 768px;
-    --color-primary: #0d1117;
-    --color-secondary: cyan;
+    --color-primary-dark: #1b1b1b;
+    --color-primary-light: #ececec;
+    --color-secondary-dark: #343943;
+    --color-secondary-light: #a8b2c1;
+    --color-accent-dark: #a84300;
+    --color-accent-light: #f26c00;
+
+    --animate-fade-in-out: fade-in-out 1.2s infinite ease-in-out;
+
+    @keyframes fade-in-out {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 }
 
 @font-face {
@@ -40,6 +58,14 @@
   font-display: swap;
 }
 
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 * {
     font-family: 'FantasqueSansMono', monospace;
     box-sizing: border-box;
@@ -52,4 +78,14 @@ html, body {
 
 body {
     overflow-x: hidden;
+    backdrop-filter: blur(4px);
+    background-position: center;
+}
+
+body[theme="dark-mode"] {
+    background-image: url('./assets/images/bg-dark.png');
+}
+
+body[theme="light-mode"] {
+    background-image: url('./assets/images/bg-light.png');
 }
