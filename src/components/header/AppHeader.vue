@@ -35,20 +35,25 @@ watch(
       class="app__header__logo"
     >
       <span
-        class="logo__prefix"
+        class="bg-gradient-to-r text-gradient"
+        :class="isDark ? 'from-accent-light to-accent-dark' : 'from-accent-dark to-accent-dark'"
       >
         ~/
       </span>
       <RouterLink
         to="/"
+        class="bg-gradient-to-r text-gradient"
+        :class="isDark ? 'from-primary-light to-secondary-light' : 'from-primary-dark to-secondary-dark'"
       >
         hfidelis
       </RouterLink>
       <span
-        class="logo__thick"
+        :style="{ marginLeft: '0.4rem' }"
+        class="relative w-[0.8rem] h-[1.5rem] md:h-[1.75rem]"
       >
         <span
-          class="logo__thick__inner"
+          class="absolute h-full w-full animate-fade-in-out"
+          :class="isDark ? 'bg-accent-dark' : 'bg-accent-light'"
         ></span>
       </span>
     </div>
@@ -77,7 +82,7 @@ watch(
       >
         <BlogButton />
         <LocaleSelect />
-        <ThemeToggle />        
+        <ThemeToggle />
       </div>
       <Transition
         name="sidebar"
@@ -88,7 +93,7 @@ watch(
         >
           <BlogButton />
           <LocaleSelect />
-          <ThemeToggle />        
+          <ThemeToggle />
         </div>
       </Transition>
     </section>
@@ -123,13 +128,6 @@ watch(
   border-bottom: 2px solid $dark-border;
   box-shadow: $dark-mode-shadow;
 
-  .app__header__logo > a {
-    background-image: linear-gradient(90deg,#fcfcfc, #5a5858);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;    
-  }
-
   .app__header__actions {
     > .menu__button {
       color: $white;
@@ -144,12 +142,6 @@ watch(
   border-bottom: 2px solid $light-border;
   box-shadow: $light-mode-shadow;
 
-  .app__header__logo > a {
-    background-image: linear-gradient(90deg,#2f2f2f,#787979);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-  }
 
   .app__header__actions {
    > .menu__button {
@@ -157,12 +149,12 @@ watch(
       background-color: $primary-light;
       border: $border-sm solid $light-border;
       box-shadow: $light-mode-shadow;
-    } 
+    }
   }
 }
 
 .logo__prefix {
-  background-image: linear-gradient(90deg,$cyan,$dark-cyan);
+  background-image: linear-gradient(90deg, $cyan, $dark-cyan);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -195,14 +187,6 @@ watch(
     @media (max-width: 768px) {
       height: $text-lg;
     }
-  }
-
-  > .logo__thick__inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: $dark-cyan;
-    animation: fadeInOut 1.2s infinite ease;
   }
 }
 
@@ -238,18 +222,6 @@ watch(
 
   backdrop-filter: blur(0.375rem) grayscale(0.75);
   -webkit-backdrop-filter: blur(0.375rem) grayscale(0.75);
-}
-
-@keyframes fadeInOut {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 @keyframes enter {
