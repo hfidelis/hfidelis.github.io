@@ -5,7 +5,7 @@ import { useDark } from '@vueuse/core'
 import isMobile from '@/helpers/isMobile'
 
 import {
-  mdiCreation,  
+  mdiCreation,
 } from '@mdi/js'
 
 const isDark = useDark()
@@ -17,12 +17,12 @@ const redirectToBlog = () => {
 </script>
 
 <template>
-  <button    
+  <button
     id="blog__button"
-    class="header__button"
+    class="flex items-center justify-center gap-[0.6rem] h-[2.75rem] border-[0.15rem] rounded-md py-[0.2rem] px-[0.6rem] cursor-pointer overflow-hidden transition-all hover:scale-105 font-bold"
     :class="[
-      isDark ? 'dark' : 'light',
-      isMobile ? 'header__mobile__item' : '',
+      isDark ? 'dark border-secondary-dark hover:shadow-dark' : 'light border-secondary-light hover:shadow-light',
+      isMobile ? 'w-[8.3rem]' : '',
     ]"
     :aria-label="$t('components.blogButton.ariaLabel')"
     @click="redirectToBlog"
