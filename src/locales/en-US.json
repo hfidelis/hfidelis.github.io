@@ -54,8 +54,8 @@
         },
         "post": {
             "notFound": {
-                "title": "Oops! It looks like this post doesn't exists.",
-                "subtitle": "Maybe you typed the wrong address or the post has been removed.",
+                "title": "Oops! There was an error loading the post, check if this post exists or try again lather.",
+                "subtitle": "It looks like something went wrong, the post may have been removed, the address might be incorrect, or an error occurred.",
                 "back": "Back to home"
             },
             "share": "Share",
