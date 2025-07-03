@@ -2,8 +2,10 @@
 import { ref, onMounted, watch } from 'vue'
 import { useDark } from '@vueuse/core'
 import { mdiNoteRemove } from '@mdi/js'
+import { NDivider, NResult } from 'naive-ui'
 
 import Layout from '@/layout/Layout.vue'
+import isMobile from '@/helpers/isMobile'
 import postService from '@/services/post/post'
 import PostPreview from '@/components/post-preview/PostPreview.vue'
 
@@ -11,6 +13,8 @@ export default {
   components: {
     Layout,
     PostPreview,
+    NResult,
+    NDivider,
   },
   data() {
     const isDark = useDark()
@@ -52,6 +56,7 @@ export default {
       isDark,
       isError,
       isLoading,
+      isMobile,
       mdiNoteRemove,
       currentLocale,
     }
@@ -75,49 +80,45 @@ export default {
       <template
         v-else-if="isError"
       >
-        <section
-          class="flex flex-col justify-center items-center min-h-full not__found"
-        >
-          <SvgIcon
-            size="48"
-            type="mdi"
-            :path="mdiNoteRemove"
-          />
-          <h1>
-            {{ $t('views.blog.notFound.title') }}
-          </h1>
-          <span>
-            {{ $t('views.blog.notFound.subtitle') }}
-          </span>
-          <RouterLink
-            :to="'/'"
-            class="not__found__link"
-            :class="isDark ? 'dark' : 'light'"
+        <section>
+          <NResult
+            status="500"
+            :title="$t('views.blog.notFound.title')"
+            :description="$t('views.blog.notFound.subtitle')"
+            :size="isMobile ? 'small' : 'medium'"
           >
-            {{ $t('views.blog.notFound.back') }}
-          </RouterLink>
+            <template #footer>
+              <RouterLink
+                :to="'/'"
+                class="text-inherit p-[0.6rem] rounded-[0.4rem] no-underline duration-[300ms] ease-in-out transition-all bg-accent-light hover:bg-accent-dark shadow-light"
+              >
+                {{ $t('views.blog.notFound.back') }}
+              </RouterLink>
+            </template>
+          </NResult>
         </section>
       </template>
 
       <div
         v-else-if="posts"
       >
-        <section
-          class="page__title"
-          :class="isDark ? 'dark' : 'light'"
-        >
-          <h1>
+        <section>
+          <h1
+            class="text-3xl lg:text-5xl font-bold text-gradient bg-gradient-to-r"
+            :class="isDark ? 'from-primary-light to-secondary-light' : 'from-primary-dark to-secondary-dark'"
+          >
             {{ $t('views.blog.title') }}
           </h1>
-          <hr>
+          <NDivider />
         </section>
 
         <section
-          class="blog__container"
+          class="flex flex-col lg:flex-row lg:gap-[5%] justify-center items-start flex-wrap gap-0"
         >
           <div
-            class="blog__post"
+            class="grow w-full lg:w-[45%]"
             v-for="(post, index) in Object.keys(posts)"
+            :key="`post-${index}-${post}-${currentLocale}`"
           >
             <PostPreview
               :key="`post[${index+1}-${post}-${currentLocale}]`"
@@ -132,81 +133,3 @@ export default {
     </FadeTransition>
   </Layout>
 </template>
-
-<style lang="scss" scoped>
-@import '@/styles/app.scss';
-
-.not__found {
-  @include flex(column, center, center, 0.6rem);
-  text-align: center;
-
-  .not__found__link {
-    background-color: $dark-cyan;
-    color: inherit;
-    padding: 0.6rem;
-    border-radius: $radius-md;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-
-    &.dark {
-      box-shadow: $dark-mode-shadow;
-    }
-
-    &.light {
-      box-shadow: $light-mode-shadow;
-    }
-
-    &:hover {
-      background-color: $darker-cyan;
-    }
-  }
-}
-
-.page__title {
-  > h1 {
-    font-size: $text-4xl;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-  }
-
-  > hr {
-    border: 0;
-  }
-
-  &.dark {
-    > hr {
-      border-top: 2px solid $dark-border;
-    }
-  }
-
-  &.light {
-    > hr {
-      border-top: 2px solid $light-border;
-    }
-  }
-
-  margin-bottom: 2rem;
-}
-
-.blog__container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 5%;
-
-  @media (max-width: 1080px) {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  > .blog__post {
-    width: 45%;
-    flex-grow: 1;
-
-    @media (max-width: 1080px) {
-      width: 100%;
-    }
-  }
-}
-</style>
