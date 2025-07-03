@@ -9,9 +9,8 @@ import IconWhatsapp from '@/components/icons/IconWhatsapp.vue'
 import SocialOption from '@/types/components/social-share/SocialOption.type'
 
 interface SocialShareProps {
-  type: SocialOption  
+  type: SocialOption
   url: string
-  isDark: boolean
 }
 
 const props = defineProps<SocialShareProps>()
@@ -56,7 +55,6 @@ watch(
       target="_blank"
       rel="noopener noreferrer"
       class="share__button"
-      :class="isDark ? 'dark' : 'light'"
       :style="{ backgroundColor: getContextColor(props.type) }"
     >
       <component
@@ -69,27 +67,17 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/app.scss';
-
 .share__button {
   display: inline-flex;
   justify-content: center;
-  align-items: center;    
+  align-items: center;
   border-radius: 50%;
-  padding: 0.3rem;  
+  padding: 0.3rem;
   transition: all 0.3s ease-in-out;
 
   &:hover {
     transform: scale(1.1);
     filter: brightness(1.8);
-  }
-
-  &.dark {
-    box-shadow: $dark-mode-shadow;
-  }
-
-  &.light {
-    box-shadow: $light-mode-shadow;
   }
 }
 </style>

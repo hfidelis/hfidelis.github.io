@@ -40,22 +40,22 @@
             }
         },
         "notFound": {
-            "title": "Ops! Parece que esta página não existe...",
+            "title": "Ops! Parece que esta página não existe.",
             "subtitle": "Talvez você tenha digitado o endereço errado ou a página foi removida.",
             "back": "Voltar para a página inicial"
         },
         "blog": {
             "title": "Blog",
             "notFound": {
-                "title": "Ops! Houve um erro ao carregar as postagens...",
+                "title": "Ops! Houve um erro ao carregar as postagens.",
                 "subtitle": "Tente novamente ou volte mais tarde.",
                 "back": "Voltar para o início"
             }
         },
         "post": {
             "notFound": {
-                "title": "Ops! Parece que este post não existe...",
-                "subtitle": "Talvez você tenha digitado o endereço errado ou o post foi removido.",
+                "title": "Ops! Houve um erro ao carregar, verifique se esse post realmente existe ou tente novamente.",
+                "subtitle": "Pode ter acontecido um erro, ou talvez você tenha digitado o endereço errado ou o post foi removido.",
                 "back": "Voltar para o início"
             },
             "share": "Compartilhar",

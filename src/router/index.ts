@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/home/Home.vue')
+      component: () => import('@/views/home/HomeView.vue')
     },
     {
       path: '/blog',
@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: '/blog/:slug',
       name: 'post',
-      component: () => import('@/views/post/Post.vue'),
+      component: () => import('@/views/post/PostView.vue'),
     },
     {
       path: '/:pathMatch(.*)*',

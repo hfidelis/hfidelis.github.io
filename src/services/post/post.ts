@@ -24,6 +24,7 @@ class PostService {
     }
 
     private getPostContent = async (path: string): Promise<string> => {
+        /* vite-ignore */
         const content = await import(path)
 
         const rawContent = await fetch(content.default)
@@ -46,7 +47,7 @@ class PostService {
 
         const results: Array<Post> = await Promise.all(promises)
 
-        results.forEach((post: Post): void => {        
+        results.forEach((post: Post): void => {
             if (!(post.slug in postsContent)) {
                 postsContent[post.slug] = {}
             }

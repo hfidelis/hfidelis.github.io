@@ -4,7 +4,7 @@ import { useDark } from '@vueuse/core'
 
 import Locale from '@/types/i18n/Locale'
 import LocaleOption from '@/components/locale-select/locale-option/LocaleOption.vue'
-import LocaleValue from '@/types/components/locale-select/LocaleValue.type'
+import LocaleValue from '@/components/locale-select/locale-value/LocaleValue.type'
 
 import ptBRFlag from '@/assets/flags/pt-BR.png'
 import enUSFlag from '@/assets/flags/en-US.png'
@@ -29,7 +29,7 @@ export default {
       flag: countryFlags[this.$i18n.locale as Locale],
     })
 
-    const locales = this.$i18n.availableLocales.map((k): LocaleValue => {      
+    const locales = this.$i18n.availableLocales.map((k): LocaleValue => {
       return {
         value: k as Locale,
         flag: countryFlags[k as Locale],
@@ -40,7 +40,7 @@ export default {
       selectedLocale.value = locale
       this.$i18n.locale = locale.value
 
-      localStorage.setItem('i18nLocale', locale.value)      
+      localStorage.setItem('i18nLocale', locale.value)
     }
 
     const checkStorageLocale = (): void => {
@@ -106,80 +106,94 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/app.scss';
+@import '@/styles.css';
 
 .select__wrapper,
 .multiselect {
   width: fit-content;
-  transition: all 0.45s ease;
+  transition: all 150ms ease;
+}
 
+.select__wrapper {
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 0.35rem $darker-cyan,
-                0 0 0.6rem $cyan;
   }
 }
 </style>
 
 <style lang="scss">
-@import '@/styles/app.scss';
+@import '@/styles.css';
 
 .dark__select {
-  border: $border-sm solid $dark-border;
-  border-radius: $radius-md;
-  box-shadow: $dark-mode-shadow;
+  border: 0.15rem solid var(--color-secondary-dark);
+  border-radius: 0.4rem;
+
+  &:hover {
+    box-shadow: var(--shadow-dark);
+  }
 
   .multiselect {
     background-color: transparent;
-    color: $primary-light;
+    color: var(--color-primary-light);
     border: none;
     cursor: pointer;
 
     .multiselect__tags,
     .multiselect__single,
     .multiselect__content-wrapper {
-      background-color: $primary-dark;
-      color: $primary-light;
+      background-color: transparent !important;
+      color: var(--color-primary-light);
       border: none;
+
+      @media screen and (max-width: 768px) {
+        background-color: var(--color-primary-dark) !important;
+      }
     }
   }
 
   .multiselect > .multiselect__content-wrapper {
-    border: $border-sm solid $dark-border;
-    box-shadow: $dark-mode-shadow;
+    border: 0.15rem solid var(--color-secondary-dark);
+    box-shadow: var(--shadow-dark);
   }
 
   .multiselect > .multiselect__select::before {
-    border-top-color: $dark-border;
+    border-top-color: var(--color-secondary-dark);
   }
 }
 
 .light__select {
-  border: $border-sm solid $light-border;
-  border-radius: $radius-md;
-  box-shadow: $light-mode-shadow;
+  border: 0.15rem solid var(--color-secondary-light);
+  border-radius: 0.4rem;
+
+  &:hover {
+    box-shadow: var(--shadow-light);
+  }
 
   .multiselect {
     background-color: transparent;
-    color: $primary-dark;
+    color: var(--color-primary-dark);
     border: none;
 
     .multiselect__tags,
     .multiselect__single,
     .multiselect__content-wrapper {
-      background-color: $primary-light;
-      color: $primary-dark;
+      background-color: transparent !important;
+      color: var(--color-primary-dark);
       border: none;
+
+      @media screen and (max-width: 768px) {
+        background-color: var(--color-primary-light) !important;
+      }
     }
   }
 
   .multiselect > .multiselect__content-wrapper {
-    border: $border-sm solid $light-border;
-    box-shadow: $light-mode-shadow;
+    border: 0.15rem solid var(--color-secondary-light);
+    box-shadow: var(--shadow-light);
   }
 
   .multiselect > .multiselect__select::before {
-    border-top-color: $light-border;
+    border-top-color: var(--color-secondary-light);
   }
 }
 </style>
