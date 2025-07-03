@@ -3,10 +3,12 @@ import { useRoute } from 'vue-router'
 import { useDark } from '@vueuse/core'
 import { mdiNoteRemove } from '@mdi/js'
 import { MdPreview } from 'md-editor-v3'
+import { NResult, NDivider } from 'naive-ui'
 import { ref, watch, onMounted, computed } from 'vue'
 
 import 'md-editor-v3/lib/preview.css'
 
+import isMobile from '@/helpers/isMobile'
 import postService from '@/services/post/post'
 import SocialShare from '@/components/social-share/SocialShare.vue'
 import SocialOption from '@/types/components/social-share/SocialOption.type'
@@ -18,6 +20,8 @@ interface ShareButtonBase {
 
 export default {
   components: {
+    NDivider,
+    NResult,
     MdPreview,
     SocialShare,
   },
@@ -98,6 +102,7 @@ export default {
       isDark,
       isError,
       isLoading,
+      isMobile,
       SHARE_BUTTONS,
       mdiNoteRemove,
       currentLocale,
@@ -123,27 +128,22 @@ export default {
       <template
         v-else-if="isError"
       >
-        <section
-          class="flex flex-col justify-center items-center min-h-full not__found"
-        >
-          <SvgIcon
-            size="48"
-            type="mdi"
-            :path="mdiNoteRemove"
-          />
-          <h1>
-            {{ $t('views.post.notFound.title') }}
-          </h1>
-          <span>
-            {{ $t('views.post.notFound.subtitle') }}
-          </span>
-          <RouterLink
-            :to="'/'"
-            class="not__found__link"
-            :class="isDark ? 'dark' : 'light'"
+        <section>
+          <NResult
+            status="404"
+            :title="$t('views.post.notFound.title')"
+            :description="$t('views.post.notFound.subtitle')"
+            :size="isMobile ? 'small' : 'medium'"
           >
-            {{ $t('views.post.notFound.back') }}
-          </RouterLink>
+            <template #footer>
+              <RouterLink
+                :to="'/'"
+                class="text-inherit p-[0.6rem] rounded-[0.4rem] no-underline duration-[300ms] ease-in-out transition-all bg-accent-light hover:bg-accent-dark shadow-light"
+              >
+                {{ $t('views.post.notFound.back') }}
+              </RouterLink>
+            </template>
+          </NResult>
         </section>
       </template>
 
@@ -151,11 +151,12 @@ export default {
         v-else-if="currentContent"
       >
         <div
-          class="blog__breadcrumb"
+          class="flex items-center justify-start gap-[0.6rem] font-bold text-md md:text-lg mb-[0.8rem]"
+          :class="isDark ? 'text-primary-light' : 'text-primary-dark'"
         >
           <RouterLink
             :to="'/blog'"
-            class="blog__breadcrumb__link"
+            class="no-underline text-inherit"
           >
             {{ $t('views.blog.title') }}
           </RouterLink>
@@ -164,53 +165,55 @@ export default {
         </div>
 
         <section
-          class="blog__social"
+          class="mt-8 flex flex-col items-start justify-center gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-0"
         >
-          <div class="social__author">
+          <div class="flex items-center justify-center gap-[0.8rem]">
             <div
-              class="author__wrapper"
-              :class="isDark ? 'dark' : 'light'"
+              class="rounded-full flex items-center justify-center w-14 h-14 lg:w-20 lg:h-20 bg-gradient-to-br p-1"
+              :class="isDark ? 'from-primary-dark to-secondary-dark via-gray-800' : 'from-primary-light to-secondary-light via-gray-400'"
             >
               <img
-                class="author__avatar"
+                class="object-cover h-full w-full rounded-full"
                 src="@/assets/images/me.jpeg"
                 alt="Heitor Fidelis"
               />
             </div>
-            <span>
+            <span
+              class="font-bold text-md lg:text-lg"
+              :class="isDark ? 'text-primary-light' : 'text-primary-dark'"
+            >
               {{ $t('views.post.defaultAuthor') }}
             </span>
           </div>
 
-          <div class="social__share">
-            <span>
+          <div class="flex items-center justify-center gap-[0.6rem]">
+            <span
+              class="font-bold"
+              :class="isDark ? 'text-primary-light' : 'text-primary-dark'"
+            >
               {{ $t('views.post.share') }}:
             </span>
             <div
-              class="share__buttons"
+              class="flex items-center justify-start gap-[0.3rem]"
             >
               <SocialShare
                 v-for="(button, index) in SHARE_BUTTONS"
                 :key="`${fullUrl}-${index}`"
                 :type="button.type"
                 :url="button.url"
-                :isDark="isDark"
               />
             </div>
           </div>
         </section>
 
-        <hr
-          class="divider"
-          :class="isDark ? 'dark' : 'light'"
-        >
+        <NDivider />
 
         <MdPreview
           :language="currentLocale"
           :theme="isDark ? 'dark' : 'light'"
-          :class="isDark ? 'dark__preview' : 'light__preview'"
+          class="rounded-xl"
           :code-foldable="false"
-          :code-theme="'gradient'"
+          :code-theme="'github'"
           :editor-id="'post-editor'"
           :preview-theme="'github'"
           :model-value="currentContent"
@@ -219,130 +222,3 @@ export default {
     </FadeTransition>
   </Layout>
 </template>
-
-<style lang="scss" scoped>
-@import '@/styles/app.scss';
-
-.blog__social {
-  margin-top: 2rem;
-  @include flex(row, center, space-between);
-
-  @media (max-width: 1024px) {
-    @include flex(column, flex-start, center, 1rem);
-  }
-
-  > .social__author {
-    @include flex(row, center, center, 0.8rem);
-
-    > span {
-      font-weight: 600;
-      font-size: $text-md;
-
-      @media (max-width: 1024px) {
-        font-size: $text-sm;
-      }
-    }
-
-    > .author__wrapper {
-      @include flex(row, center, center);
-      border-radius: 50%;
-
-      &.dark {
-        box-shadow: $dark-mode-shadow;
-        border: 2px solid $dark-border;
-      }
-
-      &.light {
-        box-shadow: $light-mode-shadow;
-        border: 2px solid $light-border;
-      }
-
-      > .author__avatar {
-        width: 4.25rem;
-        height: 4.25rem;
-        border-radius: 50%;
-
-        @media (max-width: 1024px) {
-          width: 3.5rem;
-          height: 3.5rem;
-        }
-      }
-    }
-  }
-
-  > .social__share {
-    @include flex(row, center, center, 0.6rem);
-
-    > span {
-      font-weight: 600;
-    }
-
-    > .share__buttons {
-      @include flex(row, center, flex-start, 0.3rem);
-    }
-  }
-}
-
-.divider {
-  margin: 1rem 0;
-  border: 0;
-
-  &.dark {
-    border-top: 2px solid $dark-border;
-  }
-
-  &.light {
-    border-top: 2px solid $light-border;
-  }
-}
-
-.not__found {
-  @include flex(column, center, center, 0.6rem);
-  text-align: center;
-
-  .not__found__link {
-    background-color: $dark-cyan;
-    color: inherit;
-    padding: 0.6rem;
-    border-radius: $radius-md;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-
-    &.dark {
-      box-shadow: $dark-mode-shadow;
-    }
-
-    &.light {
-      box-shadow: $light-mode-shadow;
-    }
-
-    &:hover {
-      background-color: $darker-cyan;
-    }
-  }
-}
-
-.blog__breadcrumb {
-  @include flex(row, center, flex-start, 0.6rem);
-  font-size: text-md;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-
-  .blog__breadcrumb__link {
-    text-decoration: underline;
-    color: inherit;
-  }
-
-  @media (max-width: 768px) {
-    font-size: text-sm;
-  }
-}
-
-.dark__preview {
-  box-shadow: $dark-mode-shadow !important;
-}
-
-.light__preview {
-  box-shadow: $light-mode-shadow !important;
-}
-</style>
