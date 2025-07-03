@@ -1,65 +1,75 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'FantasqueSansMono';
+  src: url('/fonts/fantasque_sans_mono_regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FantasqueSansMono';
+  src: url('/fonts/fantasque_sans_mono_bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FantasqueSansMono';
+  src: url('/fonts/fantasque_sans_mono_italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FantasqueSansMono';
+  src: url('/fonts/fantasque_sans_mono_bold_italic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --color-primary-dark: #1b1b1b;
+  --color-primary-light: #ececec;
+  --color-secondary-dark: #343943;
+  --color-secondary-light: #a8b2c1;
+  --color-accent-dark: #a84300;
+  --color-accent-light: #f26c00;
+
+  --shadow-dark: 0 0.5px 0.75rem 0.15rem rgba(255, 120, 30, 0.55),
+                 0 0.25rem 0.45rem -0.15rem rgba(255, 140, 50, 0.4);
+  --shadow-light: 0 0.75px 0.75rem 0.1rem rgba(0, 0, 0, 0.25),
+                  0 0.25rem 0.5rem -0.125rem rgba(0, 0, 0, 0.15);
+}
+
 @theme {
-    --breakpoint-xl: 1400px;
-    --breakpoint-lg: 1024px;
-    --breakpoint-md: 768px;
-    --color-primary-dark: #1b1b1b;
-    --color-primary-light: #ececec;
-    --color-secondary-dark: #343943;
-    --color-secondary-light: #a8b2c1;
-    --color-accent-dark: #a84300;
-    --color-accent-light: #f26c00;
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-secondary-dark: var(--color-secondary-dark);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-accent-light: var(--color-accent-light);
 
-    --animate-fade-in-out: fade-in-out 1.2s infinite ease-in-out;
-    --shadow-dark: 0 0.5px 0.75rem 0.15rem rgba(255, 120, 30, 0.55),
-                          0 0.25rem 0.45rem -0.15rem rgba(255, 140, 50, 0.4);
-    --shadow-light: 0 0.75px 0.75rem 0.1rem rgba(0, 0, 0, 0.25),
-                        0 0.25rem 0.5rem -0.125rem rgba(0, 0, 0, 0.15);
+  --shadow-dark: var(--shadow-dark);
+  --shadow-light: var(--shadow-light);
 
-    @keyframes fade-in-out {
-      0% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
+  --animate-fade-in-out: fade-in-out 1.2s infinite ease-in-out;
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 1;
     }
-}
-
-@font-face {
-  font-family: 'FantasqueSansMono';
-  src: url('../assets/fonts/fantasque_sans_mono_regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'FantasqueSansMono';
-  src: url('../assets/fonts/fantasque_sans_mono_bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'FantasqueSansMono';
-  src: url('../assets/fonts/fantasque_sans_mono_italic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'FantasqueSansMono';
-  src: url('../assets/fonts/fantasque_sans_mono_bold_italic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @layer utilities {
@@ -68,12 +78,49 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  .dark-scrollbar {
+    &::-webkit-scrollbar {
+      height: 0.65rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-primary-dark);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-secondary-dark);
+      border-radius: 0.3rem;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--color-accent-dark);
+    }
+  }
+
+  .light-scrollbar {
+    &::-webkit-scrollbar {
+      height: 0.65rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--color-primary-light);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-secondary-light);
+      border-radius: 0.3rem;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--color-accent-light);
+    }
+  }
 }
 
 * {
     font-family: 'FantasqueSansMono', monospace;
     box-sizing: border-box;
-    margin: 0;
 }
 
 html, body {
