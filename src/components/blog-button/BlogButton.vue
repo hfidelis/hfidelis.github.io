@@ -21,13 +21,17 @@ const redirectToBlog = () => {
     id="blog__button"
     class="flex items-center justify-center gap-[0.6rem] h-[2.75rem] border-[0.15rem] rounded-md py-[0.2rem] px-[0.6rem] cursor-pointer overflow-hidden transition-all hover:scale-105 font-bold"
     :class="[
-      isDark ? 'dark border-secondary-dark hover:shadow-dark' : 'light border-secondary-light hover:shadow-light',
-      isMobile ? 'w-[8.3rem]' : '',
+      isDark ? 'dark border-secondary-dark hover:shadow-dark text-primary-light' : 'light border-secondary-light hover:shadow-light text-primary-dark',
+      isMobile ? 'w-[8.3rem]' : null,
+      (isMobile && isDark) ? 'bg-primary-dark' : null,
+      (isMobile && !isDark) ? 'bg-primary-light' : null,
     ]"
     :aria-label="$t('components.blogButton.ariaLabel')"
     @click="redirectToBlog"
   >
-    <span>
+    <span
+      class="font-bold"
+    >
       {{ $t('components.blogButton.label') }}
     </span>
     <SvgIcon

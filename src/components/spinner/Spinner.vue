@@ -6,13 +6,13 @@ const circleCount = 3
 </script>
 
 <template>
-  <div class="spinner">
-    <div class="spinner__container">
+  <div class="h-full flex items-center justify-center">
+    <div class="flex items-center justify-center gap-[0.65rem]">
       <div
         v-for="index in circleCount"
         :key="index"
-        class="spinner__circle"
-        :class="isDark ? 'dark__spinner' : 'light__spinner'"
+        class="spinner__circle w-4 h-4 rounded-full"
+        :class="isDark ? 'bg-accent-light shadow-dark border border-secondary-dark' : 'bg-accent-dark shadow-light border border-secondary-light'"
       >
       </div>
     </div>
@@ -20,35 +20,8 @@ const circleCount = 3
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/app.scss';
-
-.spinner {  
-  @include flex(row, center, center);
-  height: 100%;
-}
-
-.spinner__container {
-  @include flex(row, center, center, 0.65rem);  
-}
-
 .spinner__circle {
-  width: 1rem;
-  height: 1rem;
-  margin: 0 0.25rem;
-  border-radius: 50%;  
   animation: spinner 0.75s infinite ease-in-out;
-}
-
-.dark__spinner {
-  border: $dark-border;
-  background-color: $cyan;
-  box-shadow: $dark-mode-shadow;
-}
-
-.light__spinner {
-  border: $light-border;
-  background-color: $dark-cyan;
-  box-shadow: $light-mode-shadow;
 }
 
 @keyframes spinner {
