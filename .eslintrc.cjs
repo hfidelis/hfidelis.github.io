@@ -14,6 +14,8 @@ module.exports = {
       "ignores": [
         "Layout",
         "Container",
+        "Spinner",
+        "Blog",
       ]
     }]
   },

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useDark } from '@vueuse/core'
+import isMobile from '@/helpers/isMobile'
 
 import IconVue from '@/components/icons/IconVue.vue'
 import IconGmail from '@/components/icons/IconGmail.vue'
@@ -31,26 +32,37 @@ const footerLinks: Array<FooterLink> = [
 
 <template>
   <section
-    class="footer__container"
+    class="
+      flex flex-col items-center justify-center
+      min-h-[20dvh]
+      w-[100dvw]
+      footer__container"
   >
     <footer
-      class="app__footer"
-      :class="isDark ? 'dark__footer' : 'light__footer'"
+      class="flex flex-col items-center justify-center gap-[0.4rem] md:justify-between md:gap-[1.2rem] rounded-[0.6rem] w-full p-[1rem]"
+      :class="isDark ? 'border-2 border-secondary-dark' : 'border-2 border-secondary-light'"
     >
       <section
-        class="footer__title"
+        class="text-center w-full"
       >
-        <h1>
+        <h1
+          class="text-[0.8rem] md:text-[1rem] font-bold"
+          :class="isDark ? 'text-primary-light' : 'text-primary-dark'"
+        >
           {{ $t('components.footer.title') }}
         </h1>
       </section>
       <section
-        class="footer__links"
+        class="w-full flex items-center justify-center gap-[0.8rem]"
       >
-        <ul>
+        <ul
+          class="flex flex-col md:flex-row items-center justify-center gap-[0.4rem] md:gap-[0.8rem] w-full p-0 m-0 list-none"
+        >
           <li
             v-for="(link, index) in footerLinks"
             :key="`footer-link-${link.label}-${index}`"
+            class="flex items-center justify-center"
+            :class="isMobile ? 'w-[80%]' : 'w-[22.5%]'"
           >
             <FooterLinkIcon
               v-bind="link"
@@ -59,7 +71,8 @@ const footerLinks: Array<FooterLink> = [
         </ul>
       </section>
       <section
-        class="footer__owner"
+        class="flex items-center justify-center gap-[0.4rem] text-[0.8rem] font-bold"
+        :class="isDark ? 'text-primary-light' : 'text-primary-dark'"
       >
         <span>
           {{ $t('components.footer.madeWith') }}
@@ -69,24 +82,19 @@ const footerLinks: Array<FooterLink> = [
         />
         <span>
           {{ $t('components.footer.by') }}
-        </span>      
+        </span>
       </section>
     </footer>
   </section>
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/app.scss';
-
 .footer__container {
-  @include flex(column, center, center);
-  min-height: $footer-height;
-  width: 100dvw;
-  padding: 2dvh 25dvw;
+  padding: 1dvh 25dvw;
 
   @media screen {
     @media (max-width: 1400px) {
-      padding: 2dvh 15dvw;
+      padding: 1dvh 15dvw;
     }
 
     @media (max-width: 1024px) {
@@ -97,87 +105,5 @@ const footerLinks: Array<FooterLink> = [
       padding: 1.2rem 1.8rem;
     }
   }
-
-  > .app__footer {
-    @include flex(column, center, space-between, 0.4rem);
-    flex: 1;
-
-    width: 100%;
-    padding: 1.2rem;
-
-    border-radius: $radius-lg;
-
-    @media screen {
-      @media (max-width: 768px) {
-        @include flex(column, center, center, 1.2rem);
-      }
-    }
-
-    > .footer__title,
-      .footer__links,
-      .footer__owner {
-        width: 100%;
-      }
-
-    > .footer__title {
-      font-size: $text-sm;
-      text-align: center;
-
-      @media screen {
-        @media (max-width: 768px) {
-          font-size: $text-xsm;
-        }
-      }
-    }
-
-    > .footer__links {
-      @include flex(row, center, center, 0.8rem);
-      width: 100%;
-
-      > ul {
-        @include flex(row, center, center, 0.8rem);
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-
-        > li {
-          @include flex(row, center, center);
-          width: 22.5%;
-        }
-      }
-
-      @media screen {
-        @media (max-width: 768px) {
-          > ul {
-            @include flex(column, center, center, 0.4rem);
-
-            > li {
-              width: 80%;
-            }
-          }
-        }
-      }
-    }
-
-    > .footer__owner {
-      @include flex(row, center, center, 0.4rem);
-      text-align: center;
-      font-weight: 500;
-      font-size: $text-xsm;
-    }
-  }
-}
-
-.dark__footer {
-  border: 2px solid $dark-border;
-  box-shadow: $dark-mode-shadow,
-              0 0 1.5rem 0.2rem rgba(135, 135, 187, 0.16) inset;
-}
-
-.light__footer {
-  border: 2px solid $light-border;
-  box-shadow: $light-mode-shadow,
-              0 0 1.5rem 0.2rem rgba(50, 50, 93, 0.35) inset;
 }
 </style>
